@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="操作系统的启动刚上电时，操作系统在硬盘中。计算机工作原理是不断地取值执行，要取值执行，就要将代码放到内存中。一开始操作系统在硬盘上，无法取值执行。所以第一部分工作就是将操作系统从硬盘上载入到内存里。这些工作由操作系统的引导扇区来完成，也就是bootsect.s，这是一段汇编程序。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2019/10/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0-1/index.html">
+<meta property="og:site_name" content="Retur0&#39;s Bolg">
+<meta property="og:description" content="操作系统的启动刚上电时，操作系统在硬盘中。计算机工作原理是不断地取值执行，要取值执行，就要将代码放到内存中。一开始操作系统在硬盘上，无法取值执行。所以第一部分工作就是将操作系统从硬盘上载入到内存里。这些工作由操作系统的引导扇区来完成，也就是bootsect.s，这是一段汇编程序。">
+<meta property="article:published_time" content="2019-10-06T05:10:00.000Z">
+<meta property="article:modified_time" content="2019-10-09T12:11:01.922Z">
+<meta property="article:author" content="Retur0">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/06/操作系统笔记-1/"/>
+
+
+
+
+
+  <title>操作系统笔记（一） | Retur0's Bolg</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Retur0's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Retur0学习的地方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Retur0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Retur0's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统笔记（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T13:10:00+08:00">
+                2019-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="操作系统的启动"><a href="#操作系统的启动" class="headerlink" title="操作系统的启动"></a>操作系统的启动</h2><p>刚上电时，操作系统在硬盘中。计算机工作原理是不断地取值执行，要取值执行，就要将代码放到内存中。一开始操作系统在硬盘上，无法取值执行。所以第一部分工作就是将操作系统从硬盘上载入到内存里。这些工作由操作系统的引导扇区来完成，也就是bootsect.s，这是一段汇编程序。</p>
+<a id="more"></a>
+
+<p>bootsect.s：</p>
+<ol>
+<li>读入setup。</li>
+<li>在屏幕上打出logo。</li>
+<li>调用13号中断，读入system。</li>
+</ol>
+<p>setup.s：完成OS启动前的设置。获得计算机的硬件信息，形成数据结构来管理这些设备。</p>
+<ol>
+<li><p>int 0x15中断，获取内存大小。为了让操作系统知道内存有多大，才可以去管理。</p>
+</li>
+<li><p>操作系统挪动到从0地址开始的一系列内存。</p>
+</li>
+<li><p><code>mov cr0,ax</code>，进入保护模式，即从16位（实模式）切换到32位的寻址方式。cr0这个寄存器的最后一位PE如果是0则为16位模式，是1则为32位模式。</p>
+<blockquote>
+<p>在保护模式下的地址翻译：</p>
+<p>地址翻译：全局描述符表GDT(Global Descriptor Table)，在硬件中完成，速度快。</p>
+<p>CS不再是左移，而是变为了选择子，存放的是表的下标，表的索引。内存地址=根据CS查表+ip。</p>
+</blockquote>
+<p> <code>jmpi 0,8</code>，CS=8，ip=0。跳到了head.s</p>
+</li>
+</ol>
+<p>接下来要跳到system模块中执行了，system由许多文件编译而成。第一部分是head.s。</p>
+<blockquote>
+<p>关于汇编：</p>
+<ol>
+<li>as86汇编：能产生16位代码的Intel 8086(386)汇编。</li>
+<li>GNU as汇编：产生32 位代码，使用AT&amp;T系统V语法。</li>
+<li>内嵌汇编，gcc编译x.c会产生中间结果as汇编文件x.s。</li>
+</ol>
+</blockquote>
+<p>head.s初始化一些表，跳出来到main.c。main.c中引用了mem_init函数，这个函数是用来初始化内存。</p>
+<p>以上步骤完成了两件事情：将操作系统读进内存和初始化（读取硬件信息等）操作系统。</p>
+<h2 id="操作系统的接口"><a href="#操作系统的接口" class="headerlink" title="操作系统的接口"></a>操作系统的接口</h2><p>信号转换，屏蔽细节。</p>
+<p>命令行是怎么回事？命令输入后发生了什么？</p>
+<ul>
+<li>命令是一个用C语言写的程序。</li>
+</ul>
+<p>图形按钮是怎么回事？</p>
+<ul>
+<li>消息框架程序 + 消息处理程序。</li>
+</ul>
+<p>操作系统接口：通过c程序连接操作系统和应用软件。例如：fork。</p>
+<p>操作系统提供这样的重要函数。这种重要函数就是操作系统接口：接口表现为函数调用，又由系统提供，所以称为系统调用(system_call)。</p>
+<h2 id="系统调用的实现"><a href="#系统调用的实现" class="headerlink" title="系统调用的实现"></a>系统调用的实现</h2><p>如果可以随意调用的话计算机会很不安全，所以要将内核程序和用户隔离。内存分为内核段和用户段。</p>
+<p>硬件提供了主动进入内核的方法：int 0x80中断。</p>
+<p>（待补完）</p>
+<h2 id="操作系统历史"><a href="#操作系统历史" class="headerlink" title="操作系统历史"></a>操作系统历史</h2><p>IBM7094：</p>
+<ul>
+<li>计算机使用原则：只专注于计算。</li>
+<li>批处理操作系统(Batch system)：一个作业完成，自动读入下一个作业。</li>
+<li>典型代表：IBSYS监控系统。</li>
+</ul>
+<p>OS/360：计算机进入各种行业，一台计算机要应对不同的使用场景。</p>
+<ul>
+<li>多道程序(multiprogramming)：多个任务同时出现，交替进行。</li>
+<li>作业之间的千幻和调度成为核心。</li>
+<li>多进程结构和进程管理概念萌芽。</li>
+</ul>
+<p>MUTICS：使用人数增加。</p>
+<ul>
+<li>每人启动一个作业，作业之间快速切换。</li>
+<li>分时系统(timesharing)：分时切换。</li>
+<li>核心仍然是任务切换，但是资源复用的思想会操作系统影响很大，虚拟内存就是一种复用。</li>
+</ul>
+<p>UNIX：简化的MUTICS，核心概念差不多，但更加灵活和成功。1969年贝尔实验室的两个人开发了UNIX。</p>
+<p>Linux：1981年推出的IBM PC。开源。</p>
+<p>多进程结构是操作系统的基本图谱。</p>
+<p>DOS：</p>
+<ul>
+<li>1975年出现了CP/M。写命令让用户用，执行对应的程序，单任务。</li>
+<li>1980，在CP/M的基础上开发了QDOS。</li>
+</ul>
+<p>MS-DOS：1981，MS-DOS。</p>
+<p>Windows：文件，开发环境，图形界面对于OS的重要性。</p>
+<p>对用户的使用感受更加重视了。</p>
+<h2 id="cpu管理的直观想法"><a href="#cpu管理的直观想法" class="headerlink" title="cpu管理的直观想法"></a>cpu管理的直观想法</h2><ul>
+<li>cpu的工作原理：自动的取值执行。</li>
+</ul>
+<p>因为IO指令非常耗时（与计算指令相比），在一个程序执行IO指令时，可以执行其他程序。就形成了多道程序交替执行。</p>
+<ul>
+<li>一个cpu上交替执行多个程序：并发。</li>
+</ul>
+<p>怎么做到并发呢？</p>
+<ul>
+<li>需要记住切换执行时，程序原来的样子。用PCB存储。</li>
+</ul>
+<p>进程：进行中的程序。</p>
+<ul>
+<li>进程有开始，有结束，程序没有。</li>
+<li>进程会走走停停，走停对程序无意义。</li>
+<li>进程要记录离开进程时进程的样子，ax，bx。。</li>
+</ul>
+<h2 id="多进程图像"><a href="#多进程图像" class="headerlink" title="多进程图像"></a>多进程图像</h2><p>操作系统只需要把这些资源记录好、要按照合理的次序推进（分配资源、进行调度），这就是多进程图像。</p>
+<p>用户使用计算机就是启动了一堆进程，用户管理计算机就是管理进程。</p>
+<p>多进程如何组织和存放进程？</p>
+<ul>
+<li>Process Control Block：用来记录进程信息的数据结构。</li>
+<li>运行→等待；运行→就绪；就绪→运行。。。</li>
+</ul>
+<p>多进程如何交替？</p>
+<ul>
+<li>启动进程，启动磁盘读写，将进程设为阻塞态，放入等待队列中。启动schedule()切换函数。</li>
+<li>getNext函数（调度函数）在就绪队列中找到下一个启动的线程，switch_to函数切换进程，保存当前线程，执行下一个线程。</li>
+</ul>
+<p>多个进程如何相互影响？</p>
+<ul>
+<li>不同进程有可能会使用同一个内存。</li>
+<li>解决方法：映射表。这是一种内存管理的方法。不同进程如果要访问同一个地址，可以用映射表把这个地址变成不同的物理地址。</li>
+</ul>
+<p>多个进程之间如何合作？</p>
+<ul>
+<li>在打印工作中，多个进程想要打印，如果不做处理多个进程交替进行打印任务，就会出现问题。</li>
+<li>解决方法：进程同步。给多个进程需要操作的公共资源上锁。第一个进程上锁，第二个进程想要执行的时候先检查锁，解锁后再执行。</li>
+</ul>
+<h2 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a>用户级线程</h2><p>线程：保留了并发的优点，避免了简称切换的代价。一个进程中有多个线程，而这些进程的资源是公用的，使切换速度更快。现在讨论的切换都是线程的切换而不是进程的切换。</p>
+<p>create函数同时启动多个线程，线程可以通过yield函数主动切换到第二个线程。</p>
+<p>两个线程公用一个栈的话，我们会发现程序的运行顺序会出现问题。为此我们需要给一个线程用一个栈，在调用yield时会切换esp寄存器（用来存放栈顶指针的寄存器，记录在tcb中，一个线程一个tcb）的值。</p>
+<h2 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h2><p>多核cpu如果想发挥作用，必须支持核心级线程。</p>
+<p>这里是多对多的：多个线程和多个核，由操作系统调配。</p>
+<p>核心级线程与用户级有什么不同？</p>
+<ul>
+<li>切换时切换的是两套站栈。包括用户栈和内核栈。</li>
+<li>这时tcp会记录用户栈与内核栈。</li>
+</ul>
+<p>用户栈和内核栈之间的关联：</p>
+<ul>
+<li><p>通过中断进入内核栈，通过IRET返回用户栈。</p>
+</li>
+<li><p>进入内核时，内核栈中压入对应用户栈的SS和SP（栈地址）、CS和IP（指令地址）。</p>
+</li>
+<li><p>内核栈中记录了如何找到用户栈的信息。</p>
+</li>
+</ul>
+<p>内核switch_to的五段论：</p>
+<ol>
+<li>进入中断。</li>
+<li>中断处理：启动磁盘读或时钟中断，引发切换。</li>
+<li>找到下个要执行的tcb。</li>
+<li>根据tcb完成内核栈的切换。</li>
+<li>IRET切换到用户栈。</li>
+</ol>
+<p>所以在创建线程时，就需要创建用户栈、内核栈、tcb。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/28/%E6%B1%87%E7%BC%96%E7%AC%94%E8%AE%B0%20I/" rel="next" title="汇编笔记（一）">
+                <i class="fa fa-chevron-left"></i> 汇编笔记（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/15/JDBC%E7%AC%94%E8%AE%B0/" rel="prev" title="JDBC笔记">
+                JDBC笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Retur0</p>
+              <p class="site-description motion-element" itemprop="description">生如夏花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的启动"><span class="nav-number">1.</span> <span class="nav-text">操作系统的启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的接口"><span class="nav-number">2.</span> <span class="nav-text">操作系统的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统调用的实现"><span class="nav-number">3.</span> <span class="nav-text">系统调用的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统历史"><span class="nav-number">4.</span> <span class="nav-text">操作系统历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu管理的直观想法"><span class="nav-number">5.</span> <span class="nav-text">cpu管理的直观想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程图像"><span class="nav-number">6.</span> <span class="nav-text">多进程图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户级线程"><span class="nav-number">7.</span> <span class="nav-text">用户级线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内核级线程"><span class="nav-number">8.</span> <span class="nav-text">内核级线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Retur0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'QIvbcGR4QcQvrQSauw8HVeRI-gzGzoHsz',
+        appKey: 'sOGwWgbi3PQxMpvBsRjDELOT',
+        placeholder: '说点什么吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

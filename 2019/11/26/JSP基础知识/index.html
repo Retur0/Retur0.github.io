@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JSP概述 Java Servler Pages，sun公司定义的一种用于开发动态web资源的技术。JSP实际上就是Servlet。  JSP最大的特点在于可以在html中嵌套java代码，为用户提供动态数据。  举例：在jsp页面中输出当前时间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP基础知识">
+<meta property="og:url" content="http://yoursite.com/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Retur0&#39;s Bolg">
+<meta property="og:description" content="JSP概述 Java Servler Pages，sun公司定义的一种用于开发动态web资源的技术。JSP实际上就是Servlet。  JSP最大的特点在于可以在html中嵌套java代码，为用户提供动态数据。  举例：在jsp页面中输出当前时间。">
+<meta property="og:image" content="http://yoursite.com/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/2019-11-26.png">
+<meta property="article:published_time" content="2019-11-26T10:13:32.000Z">
+<meta property="article:modified_time" content="2019-11-26T10:12:11.038Z">
+<meta property="article:author" content="Retur0">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/2019-11-26.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/26/JSP基础知识/"/>
+
+
+
+
+
+  <title>JSP基础知识 | Retur0's Bolg</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Retur0's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Retur0学习的地方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Retur0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Retur0's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-26T18:13:32+08:00">
+                2019-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JSP/" itemprop="url" rel="index">
+                    <span itemprop="name">JSP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/26/JSP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JSP概述"><a href="#JSP概述" class="headerlink" title="JSP概述"></a>JSP概述</h2><ul>
+<li><p>Java Servler Pages，sun公司定义的一种用于开发动态web资源的技术。JSP实际上就是Servlet。</p>
+</li>
+<li><p>JSP最大的特点在于可以在html中嵌套java代码，为用户提供动态数据。</p>
+</li>
+<li><p>举例：在jsp页面中输出当前时间。</p>
+  <a id="more"></a>
+
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.Date"</span>%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;CurrentTime&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="comment">//输出当前日期</span></span><br><span class="line">	Date date = <span class="keyword">new</span> Date();</span><br><span class="line">	out.write(date.toString());</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在旧的eclipse中使用jsp，需要导入tomcat中的jsp.jar和servlet-api.jar两个包。</p>
+</li>
+<li><p>在访问jsp页面时，会先将其编译成jsp.java，再编译成jsp.class。</p>
+</li>
+<li><p>eclipse创建jsp文件默认编码格式为ISO-8859-1，在Window-&gt;Preferences-&gt;web-&gt;JSP Files中找到Encoding，换成UTF-8，搞定。</p>
+</li>
+</ul>
+<h2 id="JSP之间提交数据的例子："><a href="#JSP之间提交数据的例子：" class="headerlink" title="JSP之间提交数据的例子："></a>JSP之间提交数据的例子：</h2><p>login.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;login&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">"handlelogin.jsp"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">&lt;table border=<span class="string">"1"</span>&gt;</span><br><span class="line">   	&lt;tr&gt;</span><br><span class="line">       	&lt;td&gt;用户名&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;&lt;input id="username" type="text" name="username"&gt;&lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">       	&lt;td&gt;密码&lt;/td&gt;</span><br><span class="line">           &lt;td&gt;&lt;input type="password" name="password"&gt;&lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">       	&lt;td colspan=<span class="string">"2"</span>&gt;</span><br><span class="line">           	&lt;input type=<span class="string">"submit"</span> value=<span class="string">"登陆"</span>&gt;</span><br><span class="line">           &lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;	</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>handlelogin.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;%</span><br><span class="line">	String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">	String password = request.getParameter(<span class="string">"password"</span>);</span><br><span class="line">	</span><br><span class="line">	out.write(username + <span class="string">"  "</span> + password);</span><br><span class="line">	%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结果：在第一个页面提交的数据会出现在第二个页面上。</p>
+<ul>
+<li>一般由servlet处理提交的数据而不用jsp。</li>
+<li>request,response,out都是jsp的内置对象，不需要创建直接可以使用。</li>
+</ul>
+<h2 id="JSP的基本使用"><a href="#JSP的基本使用" class="headerlink" title="JSP的基本使用"></a>JSP的基本使用</h2><h3 id="JSP模板元素"><a href="#JSP模板元素" class="headerlink" title="JSP模板元素"></a>JSP模板元素</h3><p>网页静态元素：html标签和文本</p>
+<h3 id="JSP的脚本"><a href="#JSP的脚本" class="headerlink" title="JSP的脚本"></a>JSP的脚本</h3><p>小脚本：<code>&lt;% java代码 %&gt;</code></p>
+<p>表达式：<code>&lt;%= 2+3%&gt;</code>等价于<code>out.print(2+3);</code></p>
+<p>声明：<code>&lt;%!   %&gt;</code>表示在类中定义全局成员，静态块</p>
+<h3 id="JSP注释"><a href="#JSP注释" class="headerlink" title="JSP注释"></a>JSP注释</h3><p>JSP注释：<code>&lt;%--    --%&gt;</code>安全、省流量。</p>
+<p>网页注释：<code>&lt;!--   --&gt;</code>不安全、费流量。</p>
+<h2 id="JSP指令"><a href="#JSP指令" class="headerlink" title="JSP指令"></a>JSP指令</h2><p>JSP指令（directive）是为JSP引擎而设计的，他们并不直接产出任何可见输出，而知识告诉引擎如何处理JSP页面中的其余部分。</p>
+<p>在JSP2.0规范中共定义了三个指令：page、include、taglib。</p>
+<p>如JSP的默认第一行：</p>
+<p><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</code></p>
+<h3 id="page"><a href="#page" class="headerlink" title="page"></a>page</h3><p>import：与java的import一样，用于导入包。</p>
+<p>errprPage：如果页面中有错误，则跳转到指定的资源。</p>
+<ul>
+<li>路径如果不写”/“则是相对路径，写”/“则从WebContent开始的绝对路径。</li>
+</ul>
+<p>contextType：告诉浏览器后面内容的格式，等同于<code>response.setContextType(&quot;text/html;charset=utf-8&quot;);</code></p>
+<p>pageEncoding：告诉JSP引擎编译这个文件使用的编码。</p>
+<p>isELIgnored：是否支持EL表达式，默认false。</p>
+<h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><p>把其他资源包含到当前页面中。</p>
+<p>静态包含：在编译时就把两个文件合并。编译完只有一个文件。</p>
+<p><code>&lt;%@ include file=&quot;include/header.jsp&quot;%&gt;</code></p>
+<p>动态包含：不会合并文件，当代码执行到include时，才会包含另一个文件的内容。编译完有两个文件。</p>
+<p><code>&lt;jsp:include page=&quot;/include/header.jsp&quot;&gt;&lt;/jsp:include&gt;</code></p>
+<ul>
+<li>能用静态包含就不要用动态包含。</li>
+</ul>
+<h3 id="taglib"><a href="#taglib" class="headerlink" title="taglib"></a>taglib</h3><p>在JSP页面中导入标签库，代替jsp中的Java代码片段。</p>
+<h2 id="JSP的常用动作"><a href="#JSP的常用动作" class="headerlink" title="JSP的常用动作"></a>JSP的常用动作</h2><p><code>&lt;jsp:include&gt;</code>：动态包含另一个jsp内容进入当前的jsp页面。</p>
+<p><code>&lt;jsp:forward page=&quot;&quot;&gt;</code>：请求转发。</p>
+<p><code>&lt;jsp:param&gt;</code>：设置请求参数。可以由请求转发标签包裹。</p>
+<p><code>&lt;jsp:useBean id=&quot;book[对象名]&quot; class=&quot;类&quot;&gt;</code>：创建一个对象。</p>
+<p><code>&lt;jsp:setProperty name=&quot;book[对象名]&quot; property=&quot;bookname[成员变量名]&quot; value=&quot;葵花宝典[bookname成员变量的值]&quot;&gt;</code>：给指定的对象属性赋值。</p>
+<p><code>&lt;jsp:getProperty name=&quot;book[对象名]&quot; property=&quot;bookname[成员变量名]&quot;&gt;</code>：取出指定对象的属性值</p>
+<h2 id="JSP的内置对象"><a href="#JSP的内置对象" class="headerlink" title="JSP的内置对象"></a>JSP的内置对象</h2><p>内置对象是不用new可以直接使用的对象。</p>
+<h3 id="pageContext"><a href="#pageContext" class="headerlink" title="pageContext"></a>pageContext</h3><p>pageContext本身是一个域对象，它可以操作其他三个域对象[request,session,application]的数据。</p>
+<blockquote>
+<p>数据的存储方式：存在域对象中</p>
+<ol>
+<li>ServletContext[application]：范围最大，在整个应用中是共享的。其中存的值所有servlet都可以拿到。</li>
+<li>Session：同一个会话中有效。同一个浏览器同一个session。一次会话。</li>
+<li>request：在同一个请求对象中有效。在request中设置的变量通过转发才可以让另外一个servlet取到值。一次请求。</li>
+</ol>
+</blockquote>
+<p>常用方法：</p>
+<ul>
+<li>void setAttribute(String name,Object o);</li>
+<li>Object getAttribute(String name);</li>
+<li>void removeAttribute(String name);</li>
+</ul>
+<p>操作其他域对象的方法：</p>
+<ul>
+<li>void setAttribute(String name, Object o, int Scope);</li>
+<li>Object getAttribute（String name, int Scope);</li>
+<li>void removeAttribute(String, int Scope);</li>
+</ul>
+<p>scope的值：</p>
+<ul>
+<li>PageContext.PAGE_SCOPE（作用域是当前页面）</li>
+<li>PageContext.REQUEST_SCOPE</li>
+<li>PageContext.SESSION_SCOPE</li>
+<li>PageContext.APPLICATION_SCOPE</li>
+</ul>
+<h3 id="findAttribute-String-name"><a href="#findAttribute-String-name" class="headerlink" title="findAttribute(String name)"></a>findAttribute(String name)</h3><p>自动从page request session application中依次查找，找到了就取值，结束查找。</p>
+<h3 id="通过pageContext获取其他8个对象"><a href="#通过pageContext获取其他8个对象" class="headerlink" title="通过pageContext获取其他8个对象"></a>通过pageContext获取其他8个对象</h3><p>pageContext.getPage();等价于直接用page。</p>
+<h3 id="pageContext的简易方法"><a href="#pageContext的简易方法" class="headerlink" title="pageContext的简易方法"></a>pageContext的简易方法</h3><p>pageContext.forward(“2.jsp”);</p>
+<p>pageContext.include(“2.jsp”);</p>
+<h2 id="JS的EL表达式"><a href="#JS的EL表达式" class="headerlink" title="JS的EL表达式"></a>JS的EL表达式</h2><p>Expression language，表达式语言，用于简化jsp中java代码的开发。它不是一种语言，是jsp中获取数据的一种规范。</p>
+<h3 id="EL的具体功能"><a href="#EL的具体功能" class="headerlink" title="EL的具体功能"></a>EL的具体功能</h3><h4 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h4><ul>
+<li><p>EL只能获取4个作用域中的数据。</p>
+</li>
+<li><p>${x}用于简化pageContext.findAttribute(“x”);</p>
+  <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="string">"name01"</span>, <span class="string">"20"</span>, <span class="string">"male"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"user"</span>,user);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">$&#123;user.name&#125;&lt;br&gt;</span><br><span class="line">$&#123;user.age&#125;&lt;br&gt;</span><br><span class="line">$&#123;user.gender&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  user.name实际上是调用user对象的getUsername方法。</p>
+<p>  显示结果：</p>
+<p>  name01</p>
+<p>  20</p>
+<p>  male</p>
+</li>
+<li><p>EL的使用方法：<code>${作用域key.属性名}</code></p>
+</li>
+<li><p>EL获取对于向null这样的数据，在页面中表现为空字符串。</p>
+</li>
+<li><p>集合数据获取：通过下表或key获取。</p>
+  <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">list.add(<span class="string">"str1"</span>);</span><br><span class="line">list.add(<span class="string">"str2"</span>);</span><br><span class="line">list.add(<span class="string">"str3"</span>);</span><br><span class="line"></span><br><span class="line">Map&lt;String,String&gt; company = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</span><br><span class="line">company.put(<span class="string">"name"</span>,<span class="string">"东亚重工"</span>);</span><br><span class="line">company.put(<span class="string">"address"</span>,<span class="string">"asia"</span>);</span><br><span class="line"></span><br><span class="line">request.setAttribute(<span class="string">"list"</span>, list);</span><br><span class="line">request.setAttribute(<span class="string">"company"</span>, company);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">$&#123;list[<span class="number">0</span>]&#125;&lt;br&gt;</span><br><span class="line">$&#123;list[<span class="number">1</span>]&#125;&lt;br&gt;</span><br><span class="line">$&#123;list[<span class="number">2</span>]&#125;&lt;br&gt;</span><br><span class="line"></span><br><span class="line">$&#123;company[<span class="string">'name'</span>]&#125;&lt;br&gt;</span><br><span class="line">$&#123;company[<span class="string">'address'</span>]&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  显示结果</p>
+<ul>
+<li>拿map的属性使用中括号。</li>
+</ul>
+</li>
+</ul>
+<h4 id="属性导航"><a href="#属性导航" class="headerlink" title="属性导航"></a>属性导航</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="string">"name01"</span>, <span class="string">"20"</span>, <span class="string">"male"</span>);</span><br><span class="line">user.setAddress(<span class="keyword">new</span> Address(<span class="string">"中国"</span>,<span class="string">"河北"</span>));</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">$&#123;user.address.country&#125;&lt;br&gt;</span><br><span class="line">$&#123;user.address.province&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>user类中一个address类的成员变量，address中有country和province两个属性。EL可以属性导航取到country或province。</p>
+<p>显示结果：</p>
+<p>中国</p>
+<p>河北</p>
+<h4 id="空运算empty"><a href="#空运算empty" class="headerlink" title="空运算empty"></a>空运算empty</h4><p>用于判断null，空字符串和没有元素的集合（即使集合对象本身不为null）都返回ture。</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">request.setAttribute(<span class="string">"list"</span>,list);</span><br><span class="line">request.setAttribute(<span class="string">"str1"</span>, <span class="string">""</span>);</span><br><span class="line">request.setAttribute(<span class="string">"str2"</span>, <span class="keyword">null</span>);</span><br><span class="line">request.setAttribute(<span class="string">"str3"</span>, <span class="string">"name"</span>);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">$&#123;empty list&#125;</span><br><span class="line">$&#123;empty str1&#125;</span><br><span class="line">$&#123;empty str2&#125;</span><br><span class="line">$&#123;empty str3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显示结果：</p>
+<p>true</p>
+<p>false</p>
+<p>true</p>
+<p>false</p>
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"><span class="comment">//1：男，0：女</span></span><br><span class="line">request.setAttribute(<span class="string">"gender"</span>,<span class="number">1</span>);</span><br><span class="line">%&gt;</span><br><span class="line">性别：</span><br><span class="line">&lt;input type=<span class="string">"radio"</span> $&#123;gender == <span class="number">1</span> ? <span class="string">"checked='checked'"</span> : <span class="string">""</span>&#125;&gt;男</span><br><span class="line">&lt;input type=<span class="string">"radio"</span> $&#123;gender == <span class="number">0</span> ? <span class="string">"checked='checked'"</span> : <span class="string">""</span>&#125;&gt;女</span><br></pre></td></tr></table></figure>
+
+<h3 id="EL的隐式对象"><a href="#EL的隐式对象" class="headerlink" title="EL的隐式对象"></a>EL的隐式对象</h3><p>pageContext 和jsp的pageContext一样</p>
+<p>pageScope 页面范围数据</p>
+<p>requestScope 请求范围数据</p>
+<p>sessionScope 会话范围数据</p>
+<p>applicationScope 应用范围数据</p>
+<p>param 一个请求参数</p>
+<p>paramValues 重名请求参数</p>
+<p>header 一个请求消息头</p>
+<p>headerValues 重名请求消息头</p>
+<p>initParam web.xml中全局参数</p>
+<p>cookie key是cookie对象的name值</p>
+<ul>
+<li>除了pageContext之外的隐式对象都是map类型的。</li>
+<li>EL表达式获取各个域中的数据。</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">pageContext.setAttribute(<span class="string">"p1"</span>,<span class="string">"page"</span>,PageContext.PAGE_SCOPE);</span><br><span class="line">pageContext.setAttribute(<span class="string">"p2"</span>,<span class="string">"request"</span>,PageContext.REQUEST_SCOPE);</span><br><span class="line">pageContext.setAttribute(<span class="string">"p3"</span>,<span class="string">"session"</span>,PageContext.SESSION_SCOPE);</span><br><span class="line">pageContext.setAttribute(<span class="string">"p4"</span>,<span class="string">"application"</span>,PageContext.APPLICATION_SCOPE);</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//用EL表达式从指定的作用域取值</span></span><br><span class="line">$&#123;pageScope.p1&#125;&lt;br&gt;</span><br><span class="line">$&#123;requestScope.p2&#125;&lt;br&gt;</span><br><span class="line">$&#123;sessionScope.p1&#125;&lt;br&gt;</span><br><span class="line">$&#123;applicationScope.p1&#125;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>显示结果：</p>
+<p>page</p>
+<p>request</p>
+<p>session</p>
+<p>application</p>
+<ul>
+<li><p>获取上下文路径名（项目名）：</p>
+<p>  <code>${pageContext.request.getContextPath}</code></p>
+<p>  可以灵活设置servlet的访问路径。</p>
+</li>
+<li><p>通过EL表达式获取请求参数：</p>
+<p>  <code>${param[&#39;username&#39;]}</code></p>
+<p>  <code>${param[&#39;password&#39;]}</code></p>
+<p>  username和password通过参数传进来，这两个表达式返回key对应的value。</p>
+</li>
+<li><p>通过EL表达式获取请求头数据：</p>
+<p>  <code>${header[&#39;Accept&#39;]}</code>可以拿到请求头里Accept的value。</p>
+</li>
+<li><p>通过EL表达式获取cookie数据：</p>
+<p>  <code>${cookie[&#39;JSESSIONID&#39;]}</code>可以拿到cookie对象。</p>
+<p>  <code>${cookie[&#39;JSESSIONID&#39;].value}</code>可以拿到cookie对象中JSESSIONID的value。</p>
+</li>
+</ul>
+<h2 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h2><p>JavaServerPage Standard Tag Library：jsp标准标签库。使用JSTL可以实现jsp页面中的逻辑处理。如判断、循环等。</p>
+<p>在导入JSTL的jar包后，在顶部添加jsp指令：</p>
+<p><code>&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot; %&gt;</code></p>
+<h3 id="通用标签：set、out、remove"><a href="#通用标签：set、out、remove" class="headerlink" title="通用标签：set、out、remove"></a>通用标签：set、out、remove</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 存一个变量值 --&gt;</span><br><span class="line">&lt;c:set var="num" value="120" scope="page"&gt;&lt;/c:set&gt;</span><br><span class="line">&lt;!-- 取出变量值 --&gt;</span><br><span class="line">&lt;c:out value="$&#123;num&#125;" default="0"&gt;&lt;/c:out&gt;</span><br><span class="line">&lt;!-- 从作用域中移除变量 --&gt;</span><br><span class="line">&lt;c:remove var="num"&gt;&lt;/c:remove&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="条件标签：if、choose"><a href="#条件标签：if、choose" class="headerlink" title="条件标签：if、choose"></a>条件标签：if、choose</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:set var="a" value="3"&gt;&lt;/c:set&gt;</span><br><span class="line">&lt;!-- c:<span class="keyword">if</span> 判断 --&gt;</span><br><span class="line">&lt;!-- test属性中写EL表达式--&gt;</span><br><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;a &lt; 5&#125;"</span>&gt;</span><br><span class="line">	a的值小于<span class="number">5</span></span><br><span class="line">&lt;/c:if&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- c:choose 选择 --&gt;</span><br><span class="line">&lt;c:choose&gt;</span><br><span class="line">	&lt;c:when test=<span class="string">"$&#123;a == 1&#125;"</span>&gt;</span><br><span class="line">    	a=<span class="number">1</span></span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test=<span class="string">"$&#123;a == 2&#125;"</span>&gt;</span><br><span class="line">    	a=<span class="number">2</span></span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test=<span class="string">"$&#123;a == 3&#125;"</span>&gt;</span><br><span class="line">    	a=<span class="number">3</span></span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代标签：forEach"><a href="#迭代标签：forEach" class="headerlink" title="迭代标签：forEach"></a>迭代标签：forEach</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- c:foreach 普通遍历 --&gt;</span><br><span class="line">&lt;!-- </span><br><span class="line"><span class="keyword">var</span> 声明变量</span><br><span class="line">begin 开始</span><br><span class="line">end 结束</span><br><span class="line">step 递增数</span><br><span class="line">--&gt;</span><br><span class="line">&lt;c:forEach <span class="keyword">var</span>=<span class="string">'i'</span> begin=<span class="string">'1'</span> end=<span class="string">'10'</span> step=<span class="string">'3'</span>&gt;</span><br><span class="line">	$&#123;i&#125;&lt;br&gt;</span><br><span class="line">&lt;/c:forEach&gt;</span><br><span class="line">&lt;!-- </span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">&lt;c:forEach items=<span class="string">"$&#123;list&#125;"</span> <span class="keyword">var</span>=<span class="string">"name"</span> varStatus=<span class="string">"vs"</span>&gt;</span><br><span class="line">	循环集合</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+
+<p>迭代器：</p>
+<ul>
+<li>c:forEach中的varStatus属性。</li>
+<li>指向一个字符串，该字符串引用一个对象。</li>
+<li>这个对象记录着当前遍历元素的一些信息：<ul>
+<li>getIndex()：返回索引。从0开始。${vs.index}</li>
+<li>getCount()：返回计数。从1开始。${vs.count}</li>
+<li>isLast()：是否是最后一个元素。${vs.last}</li>
+<li>isFirst()：是否是第一个元素。${vs.first}</li>
+</ul>
+</li>
+</ul>
+<h4 id="例子：一个chart"><a href="#例子：一个chart" class="headerlink" title="例子：一个chart"></a>例子：一个chart</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.ArrayList"</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.List"</span>%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;chart&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;style type=<span class="string">"text/css"</span>&gt;</span><br><span class="line">	.odd&#123;</span><br><span class="line">		background-color:#a6a6a6;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	.even&#123;</span><br><span class="line">		background-color:pink;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;%</span><br><span class="line">	<span class="comment">//集合数据</span></span><br><span class="line">	List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">	list.add(<span class="string">"name01"</span>);</span><br><span class="line">	list.add(<span class="string">"name02"</span>);</span><br><span class="line">	list.add(<span class="string">"name03"</span>);</span><br><span class="line">	list.add(<span class="string">"name04"</span>);</span><br><span class="line">	list.add(<span class="string">"name05"</span>);</span><br><span class="line">	list.add(<span class="string">"name06"</span>);</span><br><span class="line">	<span class="comment">//存数据</span></span><br><span class="line">	request.setAttribute(<span class="string">"list"</span>, list);</span><br><span class="line">	%&gt;</span><br><span class="line">&lt;table border=<span class="string">"1"</span>&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">		&lt;td&gt;数据&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;索引&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;是否第一个&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;是否最后一个&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;计数&lt;/td&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">	&lt;c:forEach items=<span class="string">"$&#123;list&#125;"</span> <span class="keyword">var</span>=<span class="string">"name"</span> varStatus=<span class="string">"vs"</span> &gt;</span><br><span class="line">		&lt;tr <span class="class"><span class="keyword">class</span></span>=<span class="string">"$&#123;vs.count %2 == 0 ? 'even' : 'odd' &#125;"</span> &gt;</span><br><span class="line">			&lt;td&gt;$&#123;name&#125;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;$&#123;vs.index&#125;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;$&#123;vs.first&#125;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;$&#123;vs.last&#125;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;$&#123;vs.count&#125;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/c:forEach&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<img src="2019-11-26.png" style="zoom:38%;" />
+
+
+
+
+
+<ul>
+<li>jsp在编写时省了不少力气，但它在编译后是不存在jsp语句的。如果在浏览器上查看源代码，会发现被jsp省略的东西（如循环）会一遍一遍的显示在上面。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/25/Session&Cookie/" rel="next" title="Session&Cookie">
+                <i class="fa fa-chevron-left"></i> Session&Cookie
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/02/%E4%BA%8B%E5%8A%A1-%E8%BF%9E%E6%8E%A5%E6%B1%A0-JNDI/" rel="prev" title="事务_连接池_JNDI">
+                事务_连接池_JNDI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Retur0</p>
+              <p class="site-description motion-element" itemprop="description">生如夏花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP概述"><span class="nav-number">1.</span> <span class="nav-text">JSP概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP之间提交数据的例子："><span class="nav-number">2.</span> <span class="nav-text">JSP之间提交数据的例子：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP的基本使用"><span class="nav-number">3.</span> <span class="nav-text">JSP的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP模板元素"><span class="nav-number">3.1.</span> <span class="nav-text">JSP模板元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP的脚本"><span class="nav-number">3.2.</span> <span class="nav-text">JSP的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP注释"><span class="nav-number">3.3.</span> <span class="nav-text">JSP注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP指令"><span class="nav-number">4.</span> <span class="nav-text">JSP指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#page"><span class="nav-number">4.1.</span> <span class="nav-text">page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include"><span class="nav-number">4.2.</span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#taglib"><span class="nav-number">4.3.</span> <span class="nav-text">taglib</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP的常用动作"><span class="nav-number">5.</span> <span class="nav-text">JSP的常用动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP的内置对象"><span class="nav-number">6.</span> <span class="nav-text">JSP的内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pageContext"><span class="nav-number">6.1.</span> <span class="nav-text">pageContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findAttribute-String-name"><span class="nav-number">6.2.</span> <span class="nav-text">findAttribute(String name)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过pageContext获取其他8个对象"><span class="nav-number">6.3.</span> <span class="nav-text">通过pageContext获取其他8个对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageContext的简易方法"><span class="nav-number">6.4.</span> <span class="nav-text">pageContext的简易方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS的EL表达式"><span class="nav-number">7.</span> <span class="nav-text">JS的EL表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL的具体功能"><span class="nav-number">7.1.</span> <span class="nav-text">EL的具体功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取数据"><span class="nav-number">7.1.1.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性导航"><span class="nav-number">7.1.2.</span> <span class="nav-text">属性导航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空运算empty"><span class="nav-number">7.1.3.</span> <span class="nav-text">空运算empty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三元运算符"><span class="nav-number">7.1.4.</span> <span class="nav-text">三元运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL的隐式对象"><span class="nav-number">7.2.</span> <span class="nav-text">EL的隐式对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSTL"><span class="nav-number">8.</span> <span class="nav-text">JSTL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用标签：set、out、remove"><span class="nav-number">8.1.</span> <span class="nav-text">通用标签：set、out、remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件标签：if、choose"><span class="nav-number">8.2.</span> <span class="nav-text">条件标签：if、choose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代标签：forEach"><span class="nav-number">8.3.</span> <span class="nav-text">迭代标签：forEach</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子：一个chart"><span class="nav-number">8.3.1.</span> <span class="nav-text">例子：一个chart</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Retur0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'QIvbcGR4QcQvrQSauw8HVeRI-gzGzoHsz',
+        appKey: 'sOGwWgbi3PQxMpvBsRjDELOT',
+        placeholder: '说点什么吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

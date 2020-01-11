@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="XML概念Extensible Markup Language 可扩展标记语言。可扩展是指标签可以自定义。  功能：  配置文件。 在网络中传输数据。 存储数据。   XML与HTML的区别：  w3c：万维网联盟，创建于1994年，是Web技术领域的技术标准机构。   XML的标签都是自定义的，HTML标签是预定义的。 XML依法严格，HTML语法松散。 XML是存储数据的，HTML是展示数据的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML基础知识">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/XML%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Retur0&#39;s Bolg">
+<meta property="og:description" content="XML概念Extensible Markup Language 可扩展标记语言。可扩展是指标签可以自定义。  功能：  配置文件。 在网络中传输数据。 存储数据。   XML与HTML的区别：  w3c：万维网联盟，创建于1994年，是Web技术领域的技术标准机构。   XML的标签都是自定义的，HTML标签是预定义的。 XML依法严格，HTML语法松散。 XML是存储数据的，HTML是展示数据的">
+<meta property="article:published_time" content="2019-10-20T11:18:34.000Z">
+<meta property="article:modified_time" content="2019-11-23T09:22:05.934Z">
+<meta property="article:author" content="Retur0">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/20/XML笔记/"/>
+
+
+
+
+
+  <title>XML基础知识 | Retur0's Bolg</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Retur0's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Retur0学习的地方</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/XML%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Retur0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Retur0's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XML基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T19:18:34+08:00">
+                2019-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XML/" itemprop="url" rel="index">
+                    <span itemprop="name">XML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/20/XML%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/20/XML%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Extensible Markup Language 可扩展标记语言。可扩展是指标签可以自定义。</p>
+<ul>
+<li><p>功能：</p>
+<ol>
+<li>配置文件。</li>
+<li>在网络中传输数据。</li>
+<li><strong>存储数据</strong>。</li>
+</ol>
+</li>
+<li><p>XML与HTML的区别：</p>
+<blockquote>
+<p>w3c：万维网联盟，创建于1994年，是Web技术领域的技术标准机构。</p>
+</blockquote>
+<ul>
+<li>XML的标签都是自定义的，HTML标签是预定义的。</li>
+<li>XML依法严格，HTML语法松散。</li>
+<li>XML是存储数据的，HTML是展示数据的。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><ul>
+<li><p>第一行必须是文档声明。<code>&lt;?xml version=&#39;1.0&#39; ?&gt;</code></p>
+<ul>
+<li><p>属性</p>
+<p>  version：版本号，固定为1.0 。</p>
+<p>  encoding：指定文档的码表。</p>
+<p>  standalone：文档是否独立，yes或no。如果是yes则表示这个XML文档时独立的，不能引用外部的DTD规范文件。如果是no则可以用外部的DTD文档。（很少用）</p>
+</li>
+</ul>
+</li>
+<li><p>xml文档有且只有一个根标签。</p>
+</li>
+<li><p>属性值必须使用引号引起来。</p>
+</li>
+<li><p>标签必须正确关闭。</p>
+</li>
+<li><p>xml标签名称区分大小写。数字不能开头。</p>
+</li>
+<li><p>使用<code>&lt;![CDATA[数据内容]]&gt;</code>以转义。</p>
+</li>
+</ul>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">students</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">id</span>=<span class="string">"001"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- ctrl+shift+/ --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>&lt;![CDATA[&lt;name01]]&gt;<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>24<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>女<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">birthday</span>&gt;</span>1999-1-1<span class="tag">&lt;/<span class="name">birthday</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">id</span>=<span class="string">"002"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>name02<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>29<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>女<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">birthday</span>&gt;</span>1999-7-1<span class="tag">&lt;/<span class="name">birthday</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">id</span>=<span class="string">"003"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>name03<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>30<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>女<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">birthday</span>&gt;</span>1999-1-7<span class="tag">&lt;/<span class="name">birthday</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">students</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><ol>
+<li><p>文档声明</p>
+<ul>
+<li><p>格式：<code>&lt;?xml 属性列表 ?&gt;</code></p>
+</li>
+<li><p>属性列表：</p>
+<p>  version：版本号，必须的属性。</p>
+<p>  encoding：编码方式，告知解析引擎当前文档使用的字符集，默认为ISO-8859-1。</p>
+<p>  standalone：是否独立，取值为yes或no，表示这个文档是否依赖其他文件。</p>
+</li>
+</ul>
+</li>
+<li><p>指令：结合CSS的</p>
+<p> <code>&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;a.css&quot; ?&gt;</code></p>
+</li>
+<li><p>标签：标签名称自定义的。数字不能开头，名称不能以xml开始，名称不能包含空格，可以包含数字，字母和其他字符。</p>
+</li>
+<li><p>属性：id属性值唯一。</p>
+</li>
+<li><p>文本：特殊字符要用转义字符。在CDATA区中的数据会被原样展示。<code>&lt;![CADTA[数据]]&gt;</code></p>
+</li>
+</ol>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><p>规定xml文档的书写规则。作为框架的使用者，我们应当可以做到在xml中引入约束文档，能够读懂约束文档。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ol>
+<li>DTD：一种简单的约束技术。</li>
+<li>Schema：一种复杂的约束技术。</li>
+</ol>
+<h4 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!ELEMENT student (name,password,gender,birthday)&gt;</span><br><span class="line">&lt;!ELEMENT students (student*)&gt;</span><br><span class="line">&lt;!ELEMENT birthday (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT gender (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT password (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT name (#PCDATA)&gt;</span><br><span class="line">&lt;!ATTLIST student number ID #REQUIRED&gt;</span><br></pre></td></tr></table></figure>
+
+<p>引入dtd文档到xml文档中</p>
+<ul>
+<li>内部dtd：将约束文件规则定义在xml文档中。</li>
+<li>外部dtd：将约束的规则定义在外部的dtd文件中。<ul>
+<li>本地：<code>&lt;DOCTYPE 根标签名 SYSTEM &quot;dtd文件的位置&quot;&gt;</code></li>
+<li>网络：<code>&lt;DOCTYPE 根标签名 PUBLIC &quot;dtd文件名字&quot; &quot;dtd文件的位置URL&quot;&gt;</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">students</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">"students.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">students</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">student</span> <span class="attr">number</span>=<span class="string">"S_001"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>name01<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>male<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">birthday</span>&gt;</span>1999-1-1<span class="tag">&lt;/<span class="name">birthday</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">students</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Schma"><a href="#Schma" class="headerlink" title="Schma"></a>Schma</h4><p>引入：</p>
+<ol>
+<li>填写xml文档的根元素。</li>
+<li>引入xsi的前缀，<code>xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</code></li>
+<li>引入xsd文件命名空间，<code>xsi:chemaLocation=&quot;http://www.itcast.cn/xml student.xsd&quot;</code></li>
+<li>为每一个xsd约束声明一个前缀，作为标识<code>xmlns=&quot;http://www.itcast.cn/xml&quot;</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">students</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xmlns</span>=<span class="string">"http://www.itcast.cn/xml"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">xsi:chemaLocation</span>=<span class="string">"http://www.itcast.cn/xml student.xsd"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="XML解析"><a href="#XML解析" class="headerlink" title="XML解析"></a>XML解析</h2><h3 id="操作xml文档"><a href="#操作xml文档" class="headerlink" title="操作xml文档"></a>操作xml文档</h3><ol>
+<li>解析（读取）：操作xml文档，将文档中的数据存到内存中。</li>
+<li>写入：将内存中的数据保存到xml文档中。持久化的存储。</li>
+</ol>
+<h3 id="解析xml的方式"><a href="#解析xml的方式" class="headerlink" title="解析xml的方式"></a>解析xml的方式</h3><ol>
+<li>DOM：将标记语言文档一次性加载进内存，形成一棵DOM树。<ul>
+<li>优点：操作方便，可以对文档进行CRUD的所有操作。</li>
+<li>缺点：消耗内存。</li>
+</ul>
+</li>
+<li>SAX：逐行读取，基于事件驱动的。<ul>
+<li>优点：不占内存。</li>
+<li>缺点：只能读取，不能增删改。</li>
+</ul>
+</li>
+</ol>
+<h3 id="xml常见的解析器"><a href="#xml常见的解析器" class="headerlink" title="xml常见的解析器"></a>xml常见的解析器</h3><ol>
+<li>JAXP：sun公司提供的解析器，支持dom和sax，慢。</li>
+<li>DOM4J：一款优秀的解析器。</li>
+<li>Jsoup：是一款Java的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数值。</li>
+<li>PULL：Android内置的解析器，sax方式。</li>
+</ol>
+<h3 id="Jsoup"><a href="#Jsoup" class="headerlink" title="Jsoup"></a>Jsoup</h3><p>是一款Java的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数值。</p>
+<h4 id="快速入门："><a href="#快速入门：" class="headerlink" title="快速入门："></a>快速入门：</h4><ul>
+<li>步骤：<ol>
+<li>导入jar包。</li>
+<li>获取Document对象。</li>
+<li>获取对象的标签。Element对象。</li>
+<li>获取数据。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据xml文档获取</span></span><br><span class="line"><span class="comment">// 获取student.xml的path</span></span><br><span class="line">String path = JsoupDemo1.class.getClassLoader().getResource("student.xml").getPath();</span><br><span class="line"></span><br><span class="line">Document document = Jsoup.parse(<span class="keyword">new</span> File(path), <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">Elements elements = document.getElementsByTag(<span class="string">"name"</span>);</span><br><span class="line"></span><br><span class="line">Element element = elements.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">String name = element.text();</span><br><span class="line"></span><br><span class="line">System.out.println(name);</span><br></pre></td></tr></table></figure>
+
+<h4 id="对象的使用："><a href="#对象的使用：" class="headerlink" title="对象的使用："></a>对象的使用：</h4><ul>
+<li><p>Jsoup：工具类，可以解析html或xml文档，返回Document。</p>
+<ul>
+<li><p>parse：解析html或xml对象，返回Document。</p>
+<ul>
+<li><p><code>parse(File in, String charsetName)</code>：解析html或xml的。</p>
+</li>
+<li><p><code>paese(String html)</code>：解析html或xml字符串。指的是把文档内容装化成字符串作为参数传进来。</p>
+</li>
+<li><p><code>parse(URL url, int timeoutMillis)</code>：通过网络路径获取指定的html或xml文档对象。</p>
+<p>​    </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Document：文档对象。代表内存中的dom树。继承自Element对象。</p>
+<ul>
+<li><p>获取Element对象</p>
+<p>  <code>getElementById(Strinf id)</code>：根据id属性值获取唯一元素对象。</p>
+<p>  <code>getElementsByTag(String TagName)</code>：根据标签名获取元素对象集合。</p>
+<p>  <code>getElementsByAttribute(String key)</code>：根据属性名获取元素对象集合。</p>
+<p>  <code>getElementsByAttributeValue(String key, String value)</code>：根据对应的属性名和属性值获取元素对象集合。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Elements：元素Element对象的集合。可以当作<code>ArrayList&lt;Element&gt;</code>来使用。</p>
+<p>​    </p>
+</li>
+<li><p>Element：元素对象。</p>
+<ol>
+<li><p>获取子元素对象：</p>
+<p> getElementById(Strinf id)`：根据id属性值获取唯一元素对象。</p>
+<p> <code>getElementsByTag(String TagName)</code>：根据标签名获取元素对象集合。</p>
+<p> <code>getElementsByAttribute(String key)</code>：根据属性名获取元素对象集合。</p>
+<p> <code>getElementsByAttributeValue(String key, String value)</code>：根据对应的属性名和属性值获取元素对象集合。</p>
+</li>
+<li><p>获取属性值：</p>
+<ul>
+<li><code>String attr(String key)</code>：根据属性名称获取属性值。</li>
+</ul>
+</li>
+<li><p>获取文本内容：</p>
+<ul>
+<li><p><code>String text()</code>：获取所有子标签的纯文本内容。</p>
+</li>
+<li><p><code>String html()</code>：获取标签体的所有内容（包括子标签的标签和文本内容）。</p>
+<p>​    </p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Node：节点对象。</p>
+</li>
+<li><p>快捷查询方式：</p>
+<ol>
+<li><p>select：选择器</p>
+<ul>
+<li><p>使用的方法：<code>Elements select(String cssQuery)</code></p>
+<p>  语法：参考Selector类中定义的语法。</p>
+<p>  <code>select(&quot;student[number=\&quot;001\&quot;]&quot; &gt; age)</code></p>
+<p>  number为shudent的属性，&gt;表示age是student的直接子标签，”a b”表示b是a的子标签或孙标签。</p>
+</li>
+</ul>
+</li>
+<li><p>XPath：XML路径语言 ，他是一种用来确定XML文档中某部分位置的语言。</p>
+<ul>
+<li>使用Jsoup的Xpath需要额外导入jar包。JsoupXpath-版本号.jar</li>
+<li><code>//student</code>：查询所有的student标签。</li>
+<li><code>//student/name</code>：查询所有的student下的name标签。</li>
+<li><code>//student/name[@id]</code>：查询带有id属性的name标签。</li>
+<li><code>//student/name[@id=&#39;001&#39;]</code>：查询id属性为001的name标签。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="DOM4J"><a href="#DOM4J" class="headerlink" title="DOM4J"></a>DOM4J</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// books.xml</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">书架</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">书</span> <span class="attr">number</span>=<span class="string">"100"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">书名</span>&gt;</span>Java从入门到入坟<span class="tag">&lt;/<span class="name">书名</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">作者</span>&gt;</span>谭浩强<span class="tag">&lt;/<span class="name">作者</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">价格</span>&gt;</span>178<span class="tag">&lt;/<span class="name">价格</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">出版社</span>&gt;</span>北京大学出版社<span class="tag">&lt;/<span class="name">出版社</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">书</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">书</span> <span class="attr">number</span>=<span class="string">"150"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">书名</span>&gt;</span>Java从入门到入坟<span class="tag">&lt;/<span class="name">书名</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">作者</span>&gt;</span>谭浩强<span class="tag">&lt;/<span class="name">作者</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">价格</span>&gt;</span>168<span class="tag">&lt;/<span class="name">价格</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">出版社</span>&gt;</span>北京大学出版社<span class="tag">&lt;/<span class="name">出版社</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">书</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">书</span> <span class="attr">number</span>=<span class="string">"200"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">书名</span>&gt;</span>Java从入门到入坟<span class="tag">&lt;/<span class="name">书名</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">作者</span>&gt;</span>谭浩强<span class="tag">&lt;/<span class="name">作者</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">价格</span>&gt;</span>158<span class="tag">&lt;/<span class="name">价格</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">出版社</span>&gt;</span>北京大学出版社<span class="tag">&lt;/<span class="name">出版社</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">书</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">书架</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">// 使用dom4j进行xml解析</span></span><br><span class="line">    <span class="comment">// 1.创建reader对象</span></span><br><span class="line">    SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.读取文档</span></span><br><span class="line">    Document doc = reader.read(<span class="keyword">new</span> FileInputStream(<span class="string">"./lib/books.xml"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.获取跟标签（根节点）</span></span><br><span class="line">    Element root = doc.getRootElement();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4.获取书架子标签</span></span><br><span class="line">    List books = root.elements();</span><br><span class="line">    <span class="comment">// 遍历书</span></span><br><span class="line">    <span class="keyword">for</span>(Object obj : books)&#123;</span><br><span class="line">        Element book = (Element)obj;</span><br><span class="line">        <span class="comment">// 获取book的属性</span></span><br><span class="line">        System.out.println(book.attributeValue(<span class="string">"number"</span>));</span><br><span class="line">        <span class="comment">// 获取标签名</span></span><br><span class="line">        System.out.println(book.getName());</span><br><span class="line">        <span class="comment">// 获取书名</span></span><br><span class="line">        System.out.println(book.element(<span class="string">"书名"</span>).getText());</span><br><span class="line">        <span class="comment">// 获取作者</span></span><br><span class="line">        System.out.println(book.element(<span class="string">"作者"</span>).getText());</span><br><span class="line">        <span class="comment">// 获取价格</span></span><br><span class="line">        System.out.println(book.element(<span class="string">"价格"</span>).getText());</span><br><span class="line">        <span class="comment">// 获取出版社</span></span><br><span class="line">        System.out.println(book.element(<span class="string">"出版社"</span>).getText());</span><br><span class="line">        System.out.println(<span class="string">"==========="</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">100</span><br><span class="line">书</span><br><span class="line">Java从入门到入坟</span><br><span class="line">谭浩强</span><br><span class="line">178</span><br><span class="line">北京大学出版社</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">150</span><br><span class="line">书</span><br><span class="line">Java从入门到入坟</span><br><span class="line">谭浩强</span><br><span class="line">168</span><br><span class="line">北京大学出版社</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">200</span><br><span class="line">书</span><br><span class="line">Java从入门到入坟</span><br><span class="line">谭浩强</span><br><span class="line">158</span><br><span class="line">北京大学出版社</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+
+<h4 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h4><p>专门用于查询，它定义了一种规则。</p>
+<p>//nodename 选取此节点</p>
+<p>/ 从根节点选取</p>
+<p>.. 选取此节点的父节点</p>
+<p>@ 选取属性</p>
+<p>[@属性名] 属性过滤</p>
+<p>[标签名] 子元素过滤</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">// 创建SAXReader</span></span><br><span class="line">    SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line">    Document doc = reader.read(<span class="keyword">new</span> FileInputStream(<span class="string">"./lib/books.xml"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 进行XPath查询</span></span><br><span class="line">    List nodes = doc.selectNodes((<span class="string">"//书名"</span>));</span><br><span class="line">    <span class="keyword">for</span>(Object obj : nodes)&#123;</span><br><span class="line">        Node node = (Node)obj;</span><br><span class="line">        System.out.println(node.getText());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改节点保存"><a href="#修改节点保存" class="headerlink" title="修改节点保存"></a>修改节点保存</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">// 修改节点保存</span></span><br><span class="line">    <span class="comment">// 1.读取节点</span></span><br><span class="line">    SAXReader reader = <span class="keyword">new</span> SAXReader();</span><br><span class="line">    Document doc = reader.read(<span class="keyword">new</span> FileInputStream(<span class="string">"./lib/books.xml"</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 把所有number改成1000</span></span><br><span class="line">    List list = doc.selectNodes(<span class="string">"//书/@number"</span>);</span><br><span class="line">    <span class="keyword">for</span>(Object obj : list)&#123;</span><br><span class="line">        <span class="keyword">if</span>(obj <span class="keyword">instanceof</span> Attribute)&#123;</span><br><span class="line">            Attribute att = (Attribute)obj;</span><br><span class="line">            <span class="comment">// 在内存中修改属性值</span></span><br><span class="line">            att.setValue(<span class="string">"1000"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.保存</span></span><br><span class="line">    XMLWriter writer = <span class="keyword">new</span> XMLWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">"./lib/books.xml"</span>));</span><br><span class="line">    writer.write(doc);</span><br><span class="line">    writer.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/15/JDBC%E7%AC%94%E8%AE%B0/" rel="next" title="JDBC笔记">
+                <i class="fa fa-chevron-left"></i> JDBC笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/" rel="prev" title="MySQL下数据备份和恢复">
+                MySQL下数据备份和恢复 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Retur0</p>
+              <p class="site-description motion-element" itemprop="description">生如夏花</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XML"><span class="nav-number">1.</span> <span class="nav-text">XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">1.2.2.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组成部分"><span class="nav-number">1.2.3.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">1.2.4.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DTD"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Schma"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">Schma</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML解析"><span class="nav-number">1.3.</span> <span class="nav-text">XML解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作xml文档"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作xml文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析xml的方式"><span class="nav-number">1.3.2.</span> <span class="nav-text">解析xml的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xml常见的解析器"><span class="nav-number">1.3.3.</span> <span class="nav-text">xml常见的解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jsoup"><span class="nav-number">1.3.4.</span> <span class="nav-text">Jsoup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快速入门："><span class="nav-number">1.3.4.1.</span> <span class="nav-text">快速入门：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的使用："><span class="nav-number">1.3.4.2.</span> <span class="nav-text">对象的使用：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM4J"><span class="nav-number">1.3.5.</span> <span class="nav-text">DOM4J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XPath"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">XPath</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改节点保存"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">修改节点保存</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Retur0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'QIvbcGR4QcQvrQSauw8HVeRI-gzGzoHsz',
+        appKey: 'sOGwWgbi3PQxMpvBsRjDELOT',
+        placeholder: '说点什么吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
