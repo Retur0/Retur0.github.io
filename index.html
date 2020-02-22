@@ -250,6 +250,282 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/Spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Retur0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Retur0's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/22/Spring/" itemprop="url">Spring.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-22T09:59:41+08:00">
+                2020-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/22/Spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/22/Spring/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-Spring介绍"><a href="#1-Spring介绍" class="headerlink" title="1 Spring介绍"></a>1 Spring介绍</h2><h3 id="1-1-Spring概述"><a href="#1-1-Spring概述" class="headerlink" title="1.1 Spring概述"></a>1.1 Spring概述</h3><p>Spring是一个开源框架，与2003年兴起的轻量级Java开发框架。它是为了解决企业应用开发的复杂性而创建的。Spring是一个轻量级的控制反转和面向切面的容器框架。</p>
+<p>方便解耦，简化开发：</p>
+<ul>
+<li>Spring就是专门生产Bean的大工厂，可以将所有对象创建和依赖关系维护由Spring管理。</li>
+</ul>
+<p>面向切面（AOP）编程的支持：</p>
+<ul>
+<li><p>Spring提供面向切面编程，可以方便实现对程序进行权限拦截、运行监控等功能。</p>
+</li>
+<li><p>声明式事务的支持：只需要通过配置就可以完成对事物的管理，为无需手动编程。</p>
+</li>
+</ul>
+<p>方便程序的测试：</p>
+<ul>
+<li>Spring支持Junit4，可以通过注解方便测试Spring程序。</li>
+</ul>
+<p>方便集成各种优秀框架：</p>
+<ul>
+<li>其内部提供了对各种优秀框架的支持。</li>
+</ul>
+<p>降低JavaEE API的使用难度：</p>
+<ul>
+<li>对JavaEE开发中一些难用的API（JDBC、JavaMail、远程调用等），都提供了封装，这些API的应用难度大大降低。</li>
+</ul>
+<h3 id="1-2-Spring体系结构"><a href="#1-2-Spring体系结构" class="headerlink" title="1.2 Spring体系结构"></a>1.2 Spring体系结构</h3><p>Spring是一个分层结构，它包含一系列的功能要素并被分为大约<strong>20个模块</strong>。这些模块如下图所示：</p>
+<p><img src="th.jpg" alt="1"></p>
+<h2 id="2-Spring快速入门"><a href="#2-Spring快速入门" class="headerlink" title="2 Spring快速入门"></a>2 Spring快速入门</h2><p>web中集成Spring需要哪些包？IOC是什么？</p>
+<h3 id="2-1-编写流程"><a href="#2-1-编写流程" class="headerlink" title="2.1 编写流程"></a>2.1 编写流程</h3><ul>
+<li>下载Spring开发包。</li>
+<li>导入Spring的jar包。</li>
+<li>配置Spring的核心xml文件</li>
+<li>在程序中读取Spring的配置文件来获取bean（new好的对象）。</li>
+</ul>
+<blockquote>
+<p>Spring各个版本的下载地址：</p>
+<p><a href="https://repo.spring.io/libs-release-local/org/springframework/spring/" target="_blank" rel="noopener">https://repo.spring.io/libs-release-local/org/springframework/spring/</a></p>
+<p>第三方依赖包下载地址：</p>
+<p><a href="http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-3.0.2.RELEASE-dependencies.zip" target="_blank" rel="noopener">http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-3.0.2.RELEASE-dependencies.zip</a></p>
+</blockquote>
+<h3 id="2-2-详细过程"><a href="#2-2-详细过程" class="headerlink" title="2.2 详细过程"></a>2.2 详细过程</h3><p>写个简单的service。</p>
+<p>UserServiceImpl.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"创建用户..."</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来使用Spring IoC控制反转创建实例，在src目录下写beans.xml配置文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--配置一个bean（对象）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.service.UserServiceImpl"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!--依赖注入数据--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"name01"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>test1.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test1</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 加载beans.xml这个Spring配置文件,内部就会创建对象</span></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"beans.xml"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 从spring容器获取userService对象</span></span><br><span class="line">        UserService us1 = (UserService)context.getBean(<span class="string">"userService"</span>);</span><br><span class="line">        us1.add();</span><br><span class="line"></span><br><span class="line">        UserService us2 = (UserService)context.getBean(<span class="string">"userService"</span>);</span><br><span class="line">        us2.add();</span><br><span class="line"></span><br><span class="line">        System.out.println(us1);</span><br><span class="line">        System.out.println(us2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">创建用户...name01</span><br><span class="line">创建用户...name01</span><br><span class="line">com.Retur0.service.UserServiceImpl@79e2c065</span><br><span class="line">com.Retur0.service.UserServiceImpl@79e2c065</span><br></pre></td></tr></table></figure>
+
+<p>会发现其实 us1 和 us2 是同一个对象。</p>
+<h3 id="2-3-IoC-控制反转"><a href="#2-3-IoC-控制反转" class="headerlink" title="2.3 IoC 控制反转"></a>2.3 IoC 控制反转</h3><p>Inverse of Control 控制反转的概念，就是将原本在程序中手动创建对象的控制权，交给Spring框架管理。创建对象的控制权被反转到达了Spring框架。</p>
+<h3 id="2-4-DI-依赖注入"><a href="#2-4-DI-依赖注入" class="headerlink" title="2.4 DI 依赖注入"></a>2.4 DI 依赖注入</h3><p>Dependency Injection 依赖注入，在Spring框架负责创建Bean对象时，动态地将依赖对象注入到Bean组件。</p>
+<h2 id="3-创建Spring容器的三种方式"><a href="#3-创建Spring容器的三种方式" class="headerlink" title="3 创建Spring容器的三种方式"></a>3 创建Spring容器的三种方式</h2><h3 id="3-1-三种方式"><a href="#3-1-三种方式" class="headerlink" title="3.1 三种方式"></a>3.1 三种方式</h3><p>第一种：ClassPathXmlApplicationContext，参数中传入的是xml文件的对于src的相对路径。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"beans.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第二种：文件系统路径获得配置文件，绝对路径。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> FilePathXmlApplicationContext(<span class="string">"C:\Users\38487\Desktop\IDEAWorkSpace\SpringDemo\src\beans.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第三种：使用BeanFactory（已过时）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String path = <span class="string">"C:\Users\38487\Desktop\IDEAWorkSpace\SpringDemo\src\beans.xml"</span>;</span><br><span class="line">BeanFactory factory = <span class="keyword">new</span> XmlBeanFactory(<span class="keyword">new</span> FileSystemResource(path));</span><br></pre></td></tr></table></figure>
+
+<p>在Spring内部：</p>
+<ol>
+<li>解析xml文件，获取类名，id，属性。</li>
+<li>通过反射，用类型创建对象。</li>
+<li>给创建的对象赋值。</li>
+</ol>
+<h3 id="3-2-BeanFactory和ApplicationContext的对比"><a href="#3-2-BeanFactory和ApplicationContext的对比" class="headerlink" title="3.2 BeanFactory和ApplicationContext的对比"></a>3.2 BeanFactory和ApplicationContext的对比</h3><ul>
+<li>BeanFactory采取延迟加载，第一次getBean时才会初始化Bean。</li>
+<li>ApplicationContext是对BeanFactory的扩展，提供了更多功能：<ul>
+<li>国际化处理。</li>
+<li>事件传递。</li>
+<li>Bean自动匹配。</li>
+<li>各种不同应用程的Context实现。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-装配Bean"><a href="#4-装配Bean" class="headerlink" title="4 装配Bean"></a>4 装配Bean</h2><h3 id="4-1-装配Bean的三种方式"><a href="#4-1-装配Bean的三种方式" class="headerlink" title="4.1 装配Bean的三种方式"></a>4.1 装配Bean的三种方式</h3><p>所谓的装配Bean，就是在xml中写<code>&lt;bean&gt;</code>标签。</p>
+<p>第一种：new实现类。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.service.UserServiceImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二种：通过静态工厂方法。</p>
+<p>写一个静态工厂类，返回需要的对象。在Bean中配置这个工厂类，使用时getBean(“id”)，返回为需要的对象。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.service.UserSereviceFactory"</span> <span class="attr">factory-method</span>=<span class="string">"createUserService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第三种：通过实例工厂方法。</p>
+<p>写一个工厂类，返回需要的对象。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"factory"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.service.UserSereviceFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">factory-bean</span>=<span class="string">"factory"</span> <span class="attr">factory-method</span>=<span class="string">"createUserService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-Bean的作用域"><a href="#4-2-Bean的作用域" class="headerlink" title="4.2 Bean的作用域"></a>4.2 Bean的作用域</h3><ul>
+<li>singleton：单例，在Spring容器中只存在一个Bean实例，默认值。</li>
+<li>prototype：每次从容器中调用bean时吗，都返回一个新的实例。每次调用fgetBean()时，相当于执行new XXXBean()。</li>
+<li>request：每次HTTP请求都会创建一个新的Bean，该作用域仅适用于WebApplicationContext环境。</li>
+<li>session：同一个HTTP Session共享一个Bean，不同session使用不同bean。仅适用于WebApplicationContext环境。</li>
+<li>globalSession：一般用于Portlet应用环境，该作用域仅适用于WebApplicationContext环境。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.service.UserServiceImpl"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-xml依赖注入Bean属性"><a href="#5-xml依赖注入Bean属性" class="headerlink" title="5 xml依赖注入Bean属性"></a>5 xml依赖注入Bean属性</h2><h3 id="5-1-构造方法注入"><a href="#5-1-构造方法注入" class="headerlink" title="5.1 构造方法注入"></a>5.1 构造方法注入</h3><p>在bean中，加入给属性初始化的构造函数。这样在xml中可以如下操作：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"stu"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.model.Student"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--相当于调用public Student(String username, String password)构造方法--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"name01"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以这么写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"stu"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.model.Student"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">0</span> <span class="attr">value</span>=<span class="string">"name01"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">1</span> <span class="attr">value</span>=<span class="string">"123456"</span> <span class="attr">type</span>=<span class="string">"java.lang.Integer"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-属性setter方法注入"><a href="#5-2-属性setter方法注入" class="headerlink" title="5.2 属性setter方法注入"></a>5.2 属性setter方法注入</h3><p>通过<code>&lt;property&gt;</code>标签注入。</p>
+<h3 id="5-3-p命名空间注入"><a href="#5-3-p命名空间注入" class="headerlink" title="5.3 p命名空间注入"></a>5.3 p命名空间注入</h3><p>在xml文件的约束中加入一行：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:p="http://www.springframework.org/schema/p"</span><br></pre></td></tr></table></figure>
+
+<p>这样就引入了p命名空间，这个命名空间中有类的属性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"stu"</span> <span class="attr">class</span>=<span class="string">"com.Retur0.model.Student"</span> <span class="attr">p:username</span>=<span class="string">"name01"</span> <span class="attr">p:password</span>=<span class="string">"123456"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在bean标签中如上配置，便可以使用命名空间对对象的属性进行初始化。</p>
+<h3 id="5-4-SpEL"><a href="#5-4-SpEL" class="headerlink" title="5.4 SpEL"></a>5.4 SpEL</h3><p>Spring表达式。</p>
+<ul>
+<li><p>对<code>&lt;property&gt;</code>进行统一编程，所有内容都使用value。</p>
+</li>
+<li><pre><code class="xml"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"#{表达式}"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    #&#123;123&#125;、#&#123;&#39;name01&#39;&#125;：数字、字符串。</span><br><span class="line"></span><br><span class="line">    #&#123;beanId&#125;：另一个bean引用。</span><br><span class="line"></span><br><span class="line">    #&#123;beanId.propName&#125;：操作数据。</span><br><span class="line"></span><br><span class="line">    #&#123;beanId.toString()&#125;：执行方法。</span><br><span class="line"></span><br><span class="line">    #&#123;T(类).字段|方法&#125;：静态方法或字段。</span><br><span class="line"></span><br><span class="line">### 5.3 集合注入</span><br><span class="line"></span><br><span class="line">集合注入的方法是给&#96;&lt;property&gt;&#96;添加子标签。</span><br><span class="line"></span><br><span class="line">- 数组：&#96;&lt;array&gt;&#96;</span><br><span class="line">- List：&#96;&lt;list&gt;&#96;</span><br><span class="line">- Map：&#96;&lt;map&gt;&#96;，map存放k&#x2F;v键值对，使用&#96;&lt;entry  key&#x3D;&quot;&quot; value&#x3D;&quot;&quot;&gt;&#96;描述。</span><br><span class="line">- Properties：&#96;&lt;props&gt;&#96; &#96;&lt;prop key&#x3D;&quot;&quot;&gt;&lt;&#x2F;prop&gt;&#96;</span><br><span class="line"></span><br><span class="line">### 5.4 注解注入</span><br><span class="line"></span><br><span class="line">注解是一个类，可以在开发中取代xml配置文件。</span><br><span class="line"></span><br><span class="line">@Component 取代&#96;&lt;bean class&#x3D;&quot;&quot;&gt;&#96;。</span><br><span class="line"></span><br><span class="line">@Component 取代&#96;&lt;bean id&#x3D;&quot;&quot; class&#x3D;&quot;&quot;&gt;&#96;</span><br><span class="line"></span><br><span class="line">@Repository(&quot;名称&quot;) ：dao层。</span><br><span class="line"></span><br><span class="line">@Service(&quot;名称&quot;)：service层。</span><br><span class="line"></span><br><span class="line">@Controller(&quot;名称&quot;)：web层。</span><br><span class="line"></span><br><span class="line">@Autowired：根据类型自动注入。</span><br><span class="line"></span><br><span class="line">![29](屏幕截图(29).png)</span><br><span class="line"></span><br><span class="line">@Qualifier(&quot;名称&quot;)：指定自动注入的id名称。</span><br><span class="line"></span><br><span class="line">@Resource(name&#x3D;&quot;名称&quot;)</span><br><span class="line"></span><br><span class="line">@Scope(&quot;prototype&quot;)：bean为多例。</span><br><span class="line"></span><br><span class="line">@PostConstruct：自定义初始化。</span><br><span class="line"></span><br><span class="line">@PreDestory：自定义销毁。</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br><span class="line">在本应由xml配置的UserServiceImpl类前加@Component注解以代替在xml中的配置。</span><br><span class="line"></span><br><span class="line">test.java</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">@Test</span><br><span class="line">public void test() throws Exception&#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">    使用注解来取代xml中bean的配置。</span><br><span class="line">    Spring默认注解不生效，需要在xml中配置context约束以开启注解。</span><br><span class="line">    *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;1. 加载beans.xml这个Spring配置文件,内部就会创建对象</span><br><span class="line">    ApplicationContext context &#x3D; new ClassPathXmlApplicationContext(&quot;beans.xml&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;2. 从spring容器获取userService对象</span><br><span class="line">    &#x2F;&#x2F; 如果在@Component中没有配置id，则通过类型获取。</span><br><span class="line">    UserService us1 &#x3D; (UserService) context.getBean(UserServiceImpl.class);</span><br><span class="line">    us1.add();</span><br><span class="line"></span><br><span class="line">    System.out.println(us1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+</code></pre>
+</li>
+</ul>
+<p>beans.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">                           http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 开启注解 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置自动扫描注解的包--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.Retur0.service"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/11/Struts2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1653,162 +1929,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Retur0">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Retur0's Bolg">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/" itemprop="url">MySQL下数据备份和恢复</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T18:15:26+08:00">
-                2019-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="生成SQL脚本-导出数据"><a href="#生成SQL脚本-导出数据" class="headerlink" title="生成SQL脚本 导出数据"></a>生成SQL脚本 导出数据</h1><p>不需要登陆数据库，在控制台使用mysqldump命令可以生成指定数据库的脚本文本，
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/21/MySQL%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1859,7 +1979,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1870,7 +1990,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
