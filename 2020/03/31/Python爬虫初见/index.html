@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Retur0&#39;s Bolg">
 <meta property="og:description" content="1 爬虫引用 Ryan Mitchell 在《Python网络数据采集》中的一段话：  对那些没有学过编程的人来说，计算机编程看着就像变魔术。如果编程是魔术（magic）， 那么网络数据采集（Web scraping）就是巫术（wizardry）；也就是运用“魔术”来实现精 彩实用却又不费吹灰之力的“壮举”。 说句实话，在我的软件工程师职业生涯中，我几乎没有发现像网络数据采集这样的编程实 践，可以">
 <meta property="article:published_time" content="2020-03-31T10:31:29.000Z">
-<meta property="article:modified_time" content="2020-03-31T12:10:39.020Z">
+<meta property="article:modified_time" content="2020-03-31T12:15:21.916Z">
 <meta property="article:author" content="Retur0">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="爬虫">
@@ -359,6 +359,8 @@
 <p>说句实话，在我的软件工程师职业生涯中，我几乎没有发现像网络数据采集这样的编程实 践，可以同时吸引程序员和门外汉的注意。虽然写一个简单的网络爬虫并不难，就是先收 集数据，再显示到命令行或者存储到数据库里，但是无论你之前已经做过多少次了，这件 事永远会让你感到兴奋，同时又有新的可能。 不过遗憾的是，当和别的程序员提起网络数据采集时，我听到了很多关于这件事的误解 与困惑。有些人不确定它是不是合法的（其实合法），有人不明白怎么处理那些到处都是 JavaScript、多媒体和 cookie 的新式网站，还有人对 API 和网络爬虫的区别感到困惑。 </p>
 </blockquote>
 <p>爬虫就是这样一个有趣的东西，配合上python的数据可视化，一篇知乎高赞回答就诞生了。</p>
+<a id="more"></a>
+
 <p>网络数据采集从互联网诞生就出现了。人们在为寻找特定信息浏览网页时，总是会想到，有没有一种效率更高的方法可以找到我想要的信息。这就是爬虫的意义。</p>
 <p>从网络上收集数据，最常用的方法就是写一个自动化程序向网络服务器请求数据，通常会得到HTML或其他网页文件，然后对数据进行解析，提取需要的信息。</p>
 <h2 id="2-获取目标网页"><a href="#2-获取目标网页" class="headerlink" title="2 获取目标网页"></a>2 获取目标网页</h2><p>urllib库可以方便地对网页进行请求。可以同样完成需求的还有requests库。都可以通过<code>pip install</code>指令安装。三行代码就可以请求到需要的网页：</p>
