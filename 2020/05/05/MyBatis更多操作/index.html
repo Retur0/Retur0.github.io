@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/4 | Retur0&#39;s Bolg</title>
+  <title>MyBatis更多操作 | Retur0&#39;s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生如夏花">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Retur0&#39;s Bolg">
-<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
+  <meta name="description" content="5 SqlMapConfig.xml 配置文件5.1 配置内容SqlMapConfig.xml 中配置的内容和顺序如下：  properties（属性） settings（全局配置参数） typeAliases（类型别名） typeHandlers（类型处理器） objectFactory（对象工厂） plugins（插件） enviornments（环境集合对象属性） enviorment（环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis更多操作">
+<meta property="og:url" content="http://yoursite.com/2020/05/05/MyBatis%E6%9B%B4%E5%A4%9A%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Retur0&#39;s Bolg">
-<meta property="og:description" content="生如夏花">
+<meta property="og:description" content="5 SqlMapConfig.xml 配置文件5.1 配置内容SqlMapConfig.xml 中配置的内容和顺序如下：  properties（属性） settings（全局配置参数） typeAliases（类型别名） typeHandlers（类型处理器） objectFactory（对象工厂） plugins（插件） enviornments（环境集合对象属性） enviorment（环境">
+<meta property="article:published_time" content="2020-05-05T06:18:13.000Z">
+<meta property="article:modified_time" content="2020-05-05T06:20:06.701Z">
 <meta property="article:author" content="Retur0">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="MyBatis">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Retur0&#39;s Bolg" type="application/atom+xml">
@@ -133,36 +138,154 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MyBatis更多操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/14/Mybatis%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-04-14T05:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/14/Mybatis%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">Mybatis基础使用</a>
+    <h1 class="article-title" itemprop="name">
+      MyBatis更多操作
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/05/05/MyBatis%E6%9B%B4%E5%A4%9A%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-05-05T06:18:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="5-SqlMapConfig-xml-配置文件"><a href="#5-SqlMapConfig-xml-配置文件" class="headerlink" title="5 SqlMapConfig.xml 配置文件"></a>5 SqlMapConfig.xml 配置文件</h2><h3 id="5-1-配置内容"><a href="#5-1-配置内容" class="headerlink" title="5.1 配置内容"></a>5.1 配置内容</h3><p>SqlMapConfig.xml 中配置的内容和顺序如下：</p>
+<ul>
+<li>properties（属性）</li>
+<li>settings（全局配置参数）</li>
+<li>typeAliases（类型别名）</li>
+<li>typeHandlers（类型处理器）</li>
+<li>objectFactory（对象工厂）</li>
+<li>plugins（插件）</li>
+<li>enviornments（环境集合对象属性）<ul>
+<li>enviorment（环境子属性对象）<ul>
+<li>transactionManager（事务管理）</li>
+<li>dataSource（数据源）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mappers（映射器）</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="5-2-properties"><a href="#5-2-properties" class="headerlink" title="5.2 properties"></a>5.2 properties</h3><p>可以在标签内部配置连接数据库的信息。也可以通过属性引用外部配置文件信息。</p>
+<p>内部：通过在 ${} 中写 properties 中的 name 值，来引用 value 值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/mbdemo"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置环境--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置mysql环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置事务的类型--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置数据源/连接池--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置连接数据库的4个基本信息--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>外部：resource 属性用于指定配置文件的位置，必须按照类路径的写法来写，并且必须存在于类路径下。</p>
+<p>${} 中的属性名必须与配置文件中的一致。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置环境--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置mysql环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置事务的类型--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置数据源/连接池--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--配置连接数据库的4个基本信息--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>resource 属性也可以用 url 属性替代，在这里可以用 file 协议写 url 值：</p>
+<p><code>url=&quot;file:///C:User/Desktop/jdbc.properties&quot;</code></p>
+<p>在这个路径中不能有中文。</p>
+<h3 id="5-3-typeAliases"><a href="#5-3-typeAliases" class="headerlink" title="5.3 typeAliases"></a>5.3 typeAliases</h3><p>使用 typeAliases 配置别名，它只能配置 domain 类中的别名。type 属性指的是实体类全限定类名。alias 属性指定别名，指定别名后不区分大小写。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.Retur0.domain.User"</span> <span class="attr">alias</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样指定当多了会很麻烦，所以可以指定package。</p>
+<p>指定之后，该包下的实体类都会注册别名，并且类名就是别名，不区分大小写。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.Retur0.domain"</span>&gt;</span><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-mappers"><a href="#5-4-mappers" class="headerlink" title="5.4 mappers"></a>5.4 mappers</h3><p>这里面也有一个 package 标签。用于指定 dao 接口所在的包，当指定了之后就不需要再写 resouce class 或mapper 了。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.Retur0.dao"</span>&gt;</span><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-连接池与事务控制"><a href="#6-连接池与事务控制" class="headerlink" title="6 连接池与事务控制"></a>6 连接池与事务控制</h2><h3 id="6-1-连接池"><a href="#6-1-连接池" class="headerlink" title="6.1 连接池"></a>6.1 连接池</h3><p>我们在实际开发中会使用连接池，因为它可以减少我们获取连接的时间。</p>
+<p>连接池就是用于存储链接的一个容器。容器其实是一个集合对象。该集合必须是线程安全的，不能两个线程拿到同一个连接。该集合还实现了队列的特性：先进先出。</p>
+<h3 id="6-2-MyBatis-中的连接池"><a href="#6-2-MyBatis-中的连接池" class="headerlink" title="6.2 MyBatis 中的连接池"></a>6.2 MyBatis 中的连接池</h3><p>MyBatis 连接池提供了3种配置的方式。配置的位置在 SqlMapConfig.xml 中 dataSource 标签的 type 属性，type属性表示采用何种连接池方式。</p>
+<ul>
+<li><p>type 属性的取值：</p>
+<table>
+<thead>
+<tr>
+<th>POOLED</th>
+<th>采用传统的 javax.sql.DataSouce 规范中的连接池，MyBatis 中有针对规范的实现。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UNPOOLED</td>
+<td>采用传统的获取连接的方式，虽然也实现 javax.sql.DataSouce 接口，但是并没有使用池的思想。</td>
+</tr>
+<tr>
+<td>JNDI</td>
+<td>采用服务器提供的 JNDI 技术实现，来获取 DataSouce 对象。不同的服务器能拿到的 DataSource 服务器也是不一样的。（如果不是 web 或者 maven 的 war 工程，是不能使用的）例如 tomcat 服务器，采用的是 dbcp 连接池。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>在 POOLED 模式下获取连接的流程：</p>
+<ul>
+<li>连接池分为空闲池和活动池。如果空闲池还有连接的话，直接拿一个来用。</li>
+<li>如果空闲池中没有连接可用，则到活动池中看看是否已经到了最大数量。若没到最大数量，则在活动池中创建一个新的连接。</li>
+<li>若活动池中的连接已达到最大数量，则把活动池中连接时间最长的连接返回回去。</li>
+</ul>
+<p>很明显在开发中使用 POOLED。</p>
+<h3 id="6-3-事务"><a href="#6-3-事务" class="headerlink" title="6.3 事务"></a>6.3 事务</h3><blockquote>
+<p>什么是事务：指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。</p>
+<p>事务的四大特性 ACID：原子性，隔离性，持久性，一致性。</p>
+<p>不考虑隔离性会产生的三个问题：脏读，重复度，幻读。</p>
+<p>解决办法：四种隔离级别。读未提交，读提交，重复读，幻读。</p>
+</blockquote>
+<p>在 MyBatis 中，它是通过 sqlsession 对象的 commit() 方法和 rollback() 方法实现事务的提交和回滚。</p>
+<h2 id="7-动态SQL"><a href="#7-动态SQL" class="headerlink" title="7 动态SQL"></a>7 动态SQL</h2><p>可以在 sql 语句的查询标签里添加<code>&lt;if/&gt;&lt;where/&gt;&lt;foreach/&gt;</code>标签实现动态查询。</p>
+<h2 id="8-多表操作"><a href="#8-多表操作" class="headerlink" title="8 多表操作"></a>8 多表操作</h2><p>MyBatis 中把 多对一 看成由多个 一对一 组成的。</p>
+<p>一对多</p>
+<ul>
+<li><p>用户与订单</p>
+<p>  一对多</p>
+<p>  多对一</p>
+</li>
+</ul>
+<p>一对一</p>
+<ul>
+<li>人和身份证号</li>
+</ul>
+<p>多对多</p>
+<ul>
+<li>老师与学生</li>
+</ul>
+<p>MyBatis 中的多表查询：</p>
+<ul>
+<li><p>用户与账户：一个用户可以有多个账户，一个账户只能对应一个用户（多个账户属于同一个用户）。</p>
+</li>
+<li><p>步骤：</p>
+<ol>
+<li><p>建立两张表：用户表，账户表。</p>
+<p> 让用户表和账户表具备一对多的关系，需要使用外键在账户表中添加。</p>
+</li>
+<li><p>建立两个实体类：用户实体类和账户实体类。</p>
+<p> 让用户和账户能的实体类体现出一对多的关系。</p>
+</li>
+<li><p>建立两个配置文件：</p>
+<p> 用户的配置文件</p>
+<p> 账户的配置文件</p>
+</li>
+<li><p>实现配置：</p>
+<p> 当我们查询用户时，可以得到用户下的所有账户信息。</p>
+<p> 当我们查询账户时，可以同时得到账户的所属用户信息。</p>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -172,13 +295,17 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyaBtis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -191,123 +318,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/05/MyBatis%E6%9B%B4%E5%A4%9A%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/02/bug%E6%B1%87%E6%80%BB0/" class="archive-article-date">
-  	<time datetime="2020-04-02T01:09:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/14/Mybatis%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis基础使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/02/bug%E6%B1%87%E6%80%BB0/">2020.3 | bug汇总#0</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bug</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">汇总</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/bug汇总//" class="article-tag-list-link color1">bug汇总</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-SqlMapConfig-xml-配置文件"><span class="toc-number">1.</span> <span class="toc-text">5 SqlMapConfig.xml 配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-配置内容"><span class="toc-number">1.1.</span> <span class="toc-text">5.1 配置内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-properties"><span class="toc-number">1.2.</span> <span class="toc-text">5.2 properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-typeAliases"><span class="toc-number">1.3.</span> <span class="toc-text">5.3 typeAliases</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-mappers"><span class="toc-number">1.4.</span> <span class="toc-text">5.4 mappers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-连接池与事务控制"><span class="toc-number">2.</span> <span class="toc-text">6 连接池与事务控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-连接池"><span class="toc-number">2.1.</span> <span class="toc-text">6.1 连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-MyBatis-中的连接池"><span class="toc-number">2.2.</span> <span class="toc-text">6.2 MyBatis 中的连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-事务"><span class="toc-number">2.3.</span> <span class="toc-text">6.3 事务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-动态SQL"><span class="toc-number">3.</span> <span class="toc-text">7 动态SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-多表操作"><span class="toc-number">4.</span> <span class="toc-text">8 多表操作</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/01/Python%E7%88%AC%E8%99%AB%E5%88%9D%E8%A7%81/" class="archive-article-date">
-  	<time datetime="2020-04-01T10:23:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/01/Python%E7%88%AC%E8%99%AB%E5%88%9D%E8%A7%81/">Python爬虫初见</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -330,8 +451,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
