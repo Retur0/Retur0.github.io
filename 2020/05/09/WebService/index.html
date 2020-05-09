@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/bitbug_favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/bitbug_favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记,WebService," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1 WebService的概述与应用场景1.1 简介 web服务，它是一种跨编程语言和跨操作系统平台的远程调用技术，即跨平台远程调用技术。 WebService是一个平台独立的，低耦合的，自包含的，基于可编程的web应用程序。使用开放的xml标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。 为整个企业甚至多个组织之间的业务流程的集成提供了一个通用机制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebService">
+<meta property="og:url" content="http://yoursite.com/2020/05/09/WebService/index.html">
+<meta property="og:site_name" content="Retur0&#39;s Bolg">
+<meta property="og:description" content="1 WebService的概述与应用场景1.1 简介 web服务，它是一种跨编程语言和跨操作系统平台的远程调用技术，即跨平台远程调用技术。 WebService是一个平台独立的，低耦合的，自包含的，基于可编程的web应用程序。使用开放的xml标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。 为整个企业甚至多个组织之间的业务流程的集成提供了一个通用机制。">
+<meta property="og:image" content="http://yoursite.com/2020/05/09/WebService/pic1.png">
+<meta property="article:published_time" content="2020-05-09T01:32:50.000Z">
+<meta property="article:modified_time" content="2020-05-09T01:37:06.030Z">
+<meta property="article:author" content="Retur0">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="WebService">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/09/WebService/pic1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/09/WebService/"/>
+
+
+
+
+
+  <title>WebService | Retur0's Bolg</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Retur0's Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/09/WebService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Retur0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Retur0's Bolg">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebService</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-09T09:32:50+08:00">
+                2020-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebService/" itemprop="url" rel="index">
+                    <span itemprop="name">WebService</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/09/WebService/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/09/WebService/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-WebService的概述与应用场景"><a href="#1-WebService的概述与应用场景" class="headerlink" title="1 WebService的概述与应用场景"></a>1 WebService的概述与应用场景</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><ul>
+<li>web服务，它是一种跨编程语言和跨操作系统平台的远程调用技术，即跨平台远程调用技术。</li>
+<li>WebService是一个平台独立的，低耦合的，自包含的，基于可编程的web应用程序。使用开放的xml标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</li>
+<li>为整个企业甚至多个组织之间的业务流程的集成提供了一个通用机制。</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="1-2-应用场景"><a href="#1-2-应用场景" class="headerlink" title="1.2 应用场景"></a>1.2 应用场景</h3><p><img src="pic1.png" alt="pic1"></p>
+<h2 id="2-WebService-的标准和实现方式"><a href="#2-WebService-的标准和实现方式" class="headerlink" title="2 WebService 的标准和实现方式"></a>2 WebService 的标准和实现方式</h2><h3 id="2-1-标准"><a href="#2-1-标准" class="headerlink" title="2.1 标准"></a>2.1 标准</h3><p>采用标准SOAP(Simple Object Access Protocol)协议传输，soap属于w3c标准。soap协议是基于http的应用层协议，soap协议传输的是xml数据。soap协议就是标签的格式。</p>
+<h3 id="2-2-方式"><a href="#2-2-方式" class="headerlink" title="2.2 方式"></a>2.2 方式</h3><ul>
+<li>采用wsdl(web service description language) 作为描述语言，wsdl属于w3c标准。</li>
+<li>xml是webservice跨平台的基础，因为它既与平台无关，又与厂商无关。</li>
+<li>XSD，w3c为webservice制定了一套传输数据类型，使用xml进行描述，即XSD(XML Schema Datatypes)，任何编程语言写的webservice接口在发送数据时都要转换成XSD发送。就是一种xml约束。</li>
+<li>WebService数据传输的方式：<ol>
+<li>SOAP：http + xml。</li>
+<li>Http rest：一套用来创建webService的方法，REST式的webservice使用http里的方法：get, post, delete, put。</li>
+<li>http 自定义数据协议：比如http传输json协议，http传输xml数据等。</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-WebService-开发规范"><a href="#3-WebService-开发规范" class="headerlink" title="3 WebService 开发规范"></a>3 WebService 开发规范</h2><p>Java中共有3种 WebService 开发规范 JAX-WS（JAX-RPC）、JAXM &amp; SAAJ</p>
+<p>、JAX-RS。</p>
+<h3 id="3-1-JAX-WS-概述"><a href="#3-1-JAX-WS-概述" class="headerlink" title="3.1 JAX-WS 概述"></a>3.1 JAX-WS 概述</h3><p>全称为 Java API for XML-Based WebService，Java提供了一个jar包来实现WebService。</p>
+<p>JDK1.5 ~ JAX-WS 2.0</p>
+<p>JDK1.6.0_13 ~ JAX-WS 2.1</p>
+<p>JDK1.7 ~ JAX-WS 2.2</p>
+<h2 id="4-JAX-WS"><a href="#4-JAX-WS" class="headerlink" title="4 JAX-WS"></a>4 JAX-WS</h2><h3 id="4-1-提供一个查询天气的WebService接口"><a href="#4-1-提供一个查询天气的WebService接口" class="headerlink" title="4.1 提供一个查询天气的WebService接口"></a>4.1 提供一个查询天气的WebService接口</h3><p>创建项目，创建一个SEI(Service Endpoint Interface)接口，本质是一个Weather接口。</p>
+<p>com.Retur0.weather.WeatherInterface</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WeatherInterface</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryWeather</span><span class="params">(String cityName)</span></span>;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现天气接口，在类上添加@WebService注解。</p>
+<p>WeatherInterfaceImpl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebService</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherInterfaceImpl</span> <span class="title">inplements</span> <span class="title">WeatherInterface</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryWeather</span><span class="params">(String cityName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"河北"</span>.equals(cityName))&#123;</span><br><span class="line">            <span class="keyword">return</span> cityName + <span class="string">":14~25摄氏度"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cityName + <span class="string">": no data"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发布服务：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Endpoint.publish(<span class="string">"http://127.0.0.1/12345/"</span>, <span class="keyword">new</span> WeatherInterfaceImpl);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时在浏览器访问本地的12345端口就可以看到WebService服务。（JDK6)</p>
+<h3 id="4-2-wsdl-说明书"><a href="#4-2-wsdl-说明书" class="headerlink" title="4.2 wsdl 说明书"></a>4.2 wsdl 说明书</h3><p>Web Services Description Language，网络服务描述语言。下面是其中的一些标签。</p>
+<ul>
+<li><code>&lt;service&gt;</code> 服务视图，webservice的服务节点，它包括了服务端点。</li>
+<li><code>&lt;binding&gt;</code> 为每个服务端点定义消息格式和协议细节。</li>
+<li><code>&lt;portType&gt;</code> 服务端点，描述webservie可被执行的操作方法，以及相关的消息，通过binging指向portType。</li>
+<li><code>&lt;message&gt;</code> 定义一个操作（方法）的数据参数（可有多个参数）。</li>
+<li><code>&lt;types&gt;</code> 定义webservice使用的全部数据类型。</li>
+</ul>
+<h3 id="4-3-阅读方法"><a href="#4-3-阅读方法" class="headerlink" title="4.3 阅读方法"></a>4.3 阅读方法</h3><p>从下往上阅读，先找到服务视图，通过binging找到portType，找到了protType就找到了WebService方法。</p>
+<h3 id="4-4-Wsimport-命令"><a href="#4-4-Wsimport-命令" class="headerlink" title="4.4 Wsimport 命令"></a>4.4 Wsimport 命令</h3><p>JDK自带的WebService工具，可以根据wsdl文档生成 Java 代码。位于JAVA_HOME/bin目录下。</p>
+<p>常用参数：</p>
+<ul>
+<li>-s&lt;目录&gt;    生成.java文件。</li>
+<li>-d&lt;目录&gt;    生成.class文件。默认参数。</li>
+<li>-p&lt;新生成的包名&gt;    将生成的类放于指定的包下。</li>
+</ul>
+<p>(wsdlurl) - htttp://server:port/service?wsdl    必须的参数。</p>
+<p>示例：</p>
+<p><code>C:/wsimport -s . htttp://server:1234/weather?wsdl</code></p>
+<h3 id="4-5-通过Wsimport生成客户端调用类"><a href="#4-5-通过Wsimport生成客户端调用类" class="headerlink" title="4.5 通过Wsimport生成客户端调用类"></a>4.5 通过Wsimport生成客户端调用类</h3><p>保证服务端开启，之后用cmd进入客户端java项目的src目录，输入：</p>
+<p><code>wsimport -keep -d D:\temp\d -s D:\temp\s -p com.map -verbose http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?wsdl</code></p>
+<p>完成之后src下就会出现通过wsimport生成的客户端调用类。 </p>
+<h3 id="4-6-WebService客户端编写"><a href="#4-6-WebService客户端编写" class="headerlink" title="4.6 WebService客户端编写"></a>4.6 WebService客户端编写</h3><ul>
+<li>创建服务窗口。</li>
+<li>通过服务对象找到服务端点。</li>
+<li>调用WebService的方法。</li>
+</ul>
+<p>main.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        WeatherInterfaceImplService service = <span class="keyword">new</span> WeatherInterfaceImplService();</span><br><span class="line">        WeatherInterImpl port = service.getPort(WeatherInterfaceImpl<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        String weatherInfo = prot.queryWeather(<span class="string">"河北"</span>);</span><br><span class="line">        System.out.println(weatherInfo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-ApacheCXF-框架实现-WebService（Jax-ws"><a href="#5-ApacheCXF-框架实现-WebService（Jax-ws" class="headerlink" title="5 ApacheCXF 框架实现 WebService（Jax-ws)"></a>5 ApacheCXF 框架实现 WebService（Jax-ws)</h2><h3 id="5-1-服务端"><a href="#5-1-服务端" class="headerlink" title="5.1 服务端"></a>5.1 服务端</h3><p>使用到的依赖包有：cxf-rt-frontend-jaxws、cxf-rt-transports-http-jetty（服务器）、junit、log4j。</p>
+<p>定义业务接口并实现：</p>
+<p>HelloImpl.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloImpl</span> <span class="keyword">implements</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">", welcome"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发布服务：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 发布服务的工厂</span></span><br><span class="line">        JaxWsServerFactoryBean factory = <span class="keyword">new</span> JaxWsServerFactoryBean();</span><br><span class="line">        <span class="comment">// 设置服务地址</span></span><br><span class="line">        factory.setAddress(<span class="string">"http://localhost:8000/ws/hello"</span>);</span><br><span class="line">        <span class="comment">// 设置服务类</span></span><br><span class="line">        factory.setServiceBean(<span class="keyword">new</span> HelloImpl());</span><br><span class="line">        <span class="comment">// 发布服务</span></span><br><span class="line">        factory.create();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"发布成功，端口：8000"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-客户端"><a href="#5-2-客户端" class="headerlink" title="5.2 客户端"></a>5.2 客户端</h3><p>客户端需要有服务接口的java文件。</p>
+<p>获取服务，Client.java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 服务接口访问地址:http://localhost:8000/ws/hello</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建cxf代理工厂。可以对接口生成代理对象，通过代理对象远程访问服务端。</span></span><br><span class="line">        JaxWsProxyFactoryBean factory = <span class="keyword">new</span> JaxWsProxyFactoryBean();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置远程访问服务端地址</span></span><br><span class="line">        factory.setAddress(<span class="string">"http://localhost:8000/ws/hello"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置接口类型</span></span><br><span class="line">        factory.setServiceClass(HelloService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对接口生成代理对象</span></span><br><span class="line">        HelloService hs = (HelloService) factory.create();</span><br><span class="line"></span><br><span class="line">        System.out.println(hs.getClass());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 远程访问服务端方法</span></span><br><span class="line">        System.out.println(hs.sayHello(<span class="string">"Joe"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-例子：获取手机归属地服务"><a href="#6-例子：获取手机归属地服务" class="headerlink" title="6 例子：获取手机归属地服务"></a>6 例子：获取手机归属地服务</h2><p>先用 wsimport 命令在项目里生成需要的类和接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsimport -s [想要存放的路径] http:&#x2F;&#x2F;ws.webxml.com.cn&#x2F;WebServices&#x2F;MobileCodeWS.asmx?wsdl</span><br></pre></td></tr></table></figure>
+
+<p>Client.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建cxf代理工厂。可以对接口生成代理对象，通过代理对象远程访问服务端。</span></span><br><span class="line">        JaxWsProxyFactoryBean factory = <span class="keyword">new</span> JaxWsProxyFactoryBean();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置远程访问服务端地址</span></span><br><span class="line">        factory.setAddress(<span class="string">"http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?wsdl"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置接口类型</span></span><br><span class="line">        factory.setServiceClass(MobileCodeWSSoap<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对接口生成代理对象</span></span><br><span class="line">        MobileCodeWSSoap mcw = (MobileCodeWSSoap) factory.create();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// System.out.println(mcw.getClass());</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 远程访问服务端方法</span></span><br><span class="line">        System.out.println(mcw.getMobileCodeInfo(<span class="string">"15832318651"</span>,<span class="string">""</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功在控制台获得号码归属地。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/WebService/" rel="tag"># WebService</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/05/MyBatis%E6%9B%B4%E5%A4%9A%E6%93%8D%E4%BD%9C/" rel="next" title="MyBatis更多操作">
+                <i class="fa fa-chevron-left"></i> MyBatis更多操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Retur0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="tencent://Message/?Uin=384878281&websiteName=www.oicqzone.com&Menu=yes" target="_blank" title="QQ 384878281">
+                      QQ 384878281</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/" target="_blank" title="微信 c15832318651">
+                      微信 c15832318651</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-WebService的概述与应用场景"><span class="nav-number">1.</span> <span class="nav-text">1 WebService的概述与应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-简介"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-应用场景"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-WebService-的标准和实现方式"><span class="nav-number">2.</span> <span class="nav-text">2 WebService 的标准和实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-标准"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-方式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-WebService-开发规范"><span class="nav-number">3.</span> <span class="nav-text">3 WebService 开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-JAX-WS-概述"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 JAX-WS 概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JAX-WS"><span class="nav-number">4.</span> <span class="nav-text">4 JAX-WS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-提供一个查询天气的WebService接口"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 提供一个查询天气的WebService接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-wsdl-说明书"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 wsdl 说明书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-阅读方法"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 阅读方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Wsimport-命令"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Wsimport 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-通过Wsimport生成客户端调用类"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 通过Wsimport生成客户端调用类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-WebService客户端编写"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 WebService客户端编写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-ApacheCXF-框架实现-WebService（Jax-ws"><span class="nav-number">5.</span> <span class="nav-text">5 ApacheCXF 框架实现 WebService（Jax-ws)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-服务端"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-客户端"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-例子：获取手机归属地服务"><span class="nav-number">6.</span> <span class="nav-text">6 例子：获取手机归属地服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Retur0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'QIvbcGR4QcQvrQSauw8HVeRI-gzGzoHsz',
+        appKey: 'sOGwWgbi3PQxMpvBsRjDELOT',
+        placeholder: '说点什么吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
